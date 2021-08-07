@@ -1,0 +1,56 @@
+{
+  "name": "ivanselah_my_movieslog",
+  "version": "1.0.0",
+  "description": "Movies Log",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hahmsongmin/ivanselah_my_movieslog.git"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "server": "nodemon --exec babel-node server/index.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "author": "IvanSelah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hahmsongmin/ivanselah_my_movieslog/issues"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "express": "^4.17.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "nodemon": "^2.0.12"
+  }
+}
