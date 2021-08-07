@@ -1,9 +1,13 @@
 import express from "express";
+import cors from "cors";
+import "./db";
 import rootRouter from "./routers/rootRouter";
 
 const app = express();
 
 const PORT = 7777;
+
+app.use(cors());
 
 app.use("/", rootRouter);
 // app.use("/users", usersRouter);
