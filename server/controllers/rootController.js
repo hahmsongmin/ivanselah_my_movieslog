@@ -1,7 +1,7 @@
 import { getMovies } from "../db";
 
 export const home = (req, res) => {
-    return res.end(JSON.stringify({movies : getMovies}));
+    return res.json({ movies : getMovies()})
 };
 export const getJoin = (req, res) => {};
 export const postJoin = (req, res) => {};
