@@ -16,13 +16,19 @@ class App extends React.Component {
     this.setState({movies, isLoading: false});
     // console.log(typeof movies, movies);
   };
-  componentDidMount(){
-    this.getMovies();
-  }
+  // componentDidMount(){
+  //   this.getMovies();
+  // }
   render(){
     const { isLoading, movies } = this.state;
     return(
       <section>
+        <div>
+          <form action="http://localhost:7777/">
+            <input type="text" name="movieTitle"></input>
+            <input type="submit" value="검색"></input>
+          </form>
+        </div>
         {isLoading ? (
           <div className="loader">
             <span className="loader__text">Loading...</span>
@@ -46,4 +52,6 @@ class App extends React.Component {
   }
 };
 
+
 export default App;
+

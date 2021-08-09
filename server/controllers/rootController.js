@@ -1,6 +1,8 @@
 import { getMovies } from "../db";
 
 export const home = (req, res) => {
+    const { movieTitle } = req.query;
+    console.log(movieTitle);
     return res.json({ movies : getMovies()})
 };
 export const getJoin = (req, res) => {};
