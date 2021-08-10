@@ -3,6 +3,7 @@ import axios from "axios";
 import React from 'react';
 import {Movies} from "./containers/home";
 
+
 class App extends React.Component {
 
   state = {
@@ -16,19 +17,13 @@ class App extends React.Component {
     this.setState({movies, isLoading: false});
     // console.log(typeof movies, movies);
   };
-  // componentDidMount(){
-  //   this.getMovies();
-  // }
+  componentDidMount(){
+    this.getMovies();
+  }
   render(){
     const { isLoading, movies } = this.state;
     return(
       <section>
-        <div>
-          <form action="http://localhost:7777/">
-            <input type="text" name="movieTitle"></input>
-            <input type="submit" value="검색"></input>
-          </form>
-        </div>
         {isLoading ? (
           <div className="loader">
             <span className="loader__text">Loading...</span>
