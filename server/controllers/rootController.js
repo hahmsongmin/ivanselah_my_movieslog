@@ -1,4 +1,4 @@
-import { getMovies } from "../db";
+import { getMovies } from "../apiDb";
 
 export const home = (req, res) => {
     const { movieTitle } = req.query;
