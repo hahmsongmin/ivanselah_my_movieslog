@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+// Config
+@import "./config/reset";
+@import "./config/variable";
+
+// Components 
+@import "./components/navBar.scss";
+
+// Screens 
+
+.movies-box{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15%, auto));
+    padding: 20vh;
+    row-gap: 10px;
+    column-gap: 20px;
+    .movies-box__movie {
+        text-align: center;
+        .movies-box__title{
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+    }
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    all: unset;
+    text-decoration: none;
+    color: inherit;
+}
+
+

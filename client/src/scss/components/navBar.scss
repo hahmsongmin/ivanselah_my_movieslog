@@ -1,0 +1,27 @@
+.nav-container {
+    width:100vw;
+    position:fixed;
+    font-weight:bold;
+    background:$backColor;
+    color: $mainColor;
+    transition:0.4s ease-in-out;
+    z-index:2;
+    font-size: 1.5rem;
+}
+.nav-container__header{
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+
+    .nav-container__logo {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .nav-container__navigation{
+        a {
+            margin-left: 20px;
+            cursor: pointer;
+        }
+    }
+}
