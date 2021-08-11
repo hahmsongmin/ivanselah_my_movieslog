@@ -25,3 +25,11 @@
         }
     }
 }
+
+.users-login-form__btn-switch{
+    @extend .users-join-form__btn-switch;
+}
+
+.users-login-form__btn-switch__create {
+    @extend .users-join-form__btn-switch__create;
+}

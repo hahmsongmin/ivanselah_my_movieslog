@@ -30,3 +30,7 @@
         }
     }
 }
+
+.users-login-form{
+    @extend .users-join-form;
+}

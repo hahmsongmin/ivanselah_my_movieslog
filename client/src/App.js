@@ -6,6 +6,7 @@ import Navbar from "./views/components/navBar";
 import {Movies} from "./views/homeScreen";
 import { Link, Route, Switch, BrowserRouter } from "react-router-dom";
 import Join from "./views/users/join";
+import Login from "./views/users/login";
 
 
 class App extends React.Component {
@@ -55,6 +56,9 @@ class App extends React.Component {
               </Route>
             <Route exact path="/join">
               <Join />
+            </Route>
+            <Route exact path="/login">
+              <Login />
             </Route>
           </Switch>
         </BrowserRouter>
