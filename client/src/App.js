@@ -4,7 +4,7 @@ import axios from "axios";
 import React from 'react';
 import Navbar from "./views/components/navBar";
 import {Movies} from "./views/homeScreen";
-import { Link, Route, Switch, BrowserRouter } from "react-router-dom";
+import { Link, HashRouter ,Route, Switch, BrowserRouter } from "react-router-dom";
 import Join from "./views/users/join";
 import Login from "./views/users/login";
 
@@ -30,7 +30,7 @@ class App extends React.Component {
     return (
       <>
         <Navbar />
-        <BrowserRouter>
+        <HashRouter>
           <Switch>
             <Route exact path="/">
               <main>
@@ -57,11 +57,9 @@ class App extends React.Component {
             <Route exact path="/join">
               <Join />
             </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
+            <Route exact path="/login" component={Login} />
           </Switch>
-        </BrowserRouter>
+        </HashRouter>
       </>
     )
   }

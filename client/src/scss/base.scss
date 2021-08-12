@@ -28,6 +28,18 @@
     }
 }
 
+.loader{
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    .loader__text {
+        font-size: 2rem;
+    }
+}
+
+
 body {
     font-family: 'Roboto', sans-serif;
 }
