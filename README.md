@@ -4,18 +4,30 @@ search for movie, register it and write my own log.
 
 ## Skills(Base Node.JS)
 - Font-End
-  - [ ] HTML, CSS(+SCSS), ES6, React
+  - [x] HTML, CSS(+SCSS), ES6, React
 - Back-End
-  - [ ] Express, MongoDB, Mongoose, WebPack
+  - [x] Express, MongoDB, Mongoose, WebPack
 - Deployment
   - [ ] AWS(Ubuntu), Heroku
 
-## Screens Path
+## Screens Path && + Functions
 
-- [ ] home
-- [ ] join(+github)
-- [ ] login, logout
-- [ ] search
-- [ ] movies
-- [ ] movieDetail
-- [ ] logSpace
+- [x] home + 
+- [x] join(+github) +
+- [ ] login, logout +
+- [ ] search +
+- [ ] movies +
+- [ ] movieDetail +
+- [ ] logSpace +
+
+
+## API Name, get info
+
+- [x] Now Playing (Movies)
+- [x] Upcoming (Movies)
+- [x] Top Rated (TV)
+- [x] Popular (TV)
+- [x] Airing Today(TV)
+- [x] Movie Detail
+- [x] TV Program Detail
+- [x] Search (Movie, TV)

@@ -6,11 +6,11 @@ const Join = () => {
     return (
         <>
         <div className="users-form">
-            <span>MOVIESLOG JOIN</span>
+            <span>LOGFLIX JOIN</span>
         </div>
         <form method="POST" className="users-join-form">
             <input placeholder="Email" name="email" type="email" required autoComplete="off" />
-            <input placeholder="username" name="username" type="text" required autoComplete="off" />
+            <input placeholder="Username" name="username" type="text" required autoComplete="off" />
             <input placeholder="Password" name="password" type="password" required autoComplete="off"/>
             <input placeholder="Confirm Password" name="password2" type="password" required autoComplete="off"/>
             <input type="submit" value="Join" />

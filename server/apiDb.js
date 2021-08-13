@@ -1,7 +1,7 @@
 import axios from "axios";
 
 let movies = [];
-
+// 5b42baf14b999aeb69e9bef0f88d55da
 // const MY_API = "5b42baf14b999aeb69e9bef0f88d55da";
 // const MOVIES_SEARCH = `https://api.themoviedb.org/3/search/movie?query=${MOVIE_NAME}&api_key=${MY_API}`
 

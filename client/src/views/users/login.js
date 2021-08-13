@@ -5,7 +5,7 @@ const Login = () => {
     return (
         <>
         <div className="users-form">
-            <span>MOVIESLOG LOGIN</span>
+            <span>LOGFLIX LOGIN</span>
         </div>
         <form method="POST" className="users-login-form">
             <input placeholder="Email" name="email" type="email" required autoComplete="off" />
@@ -17,7 +17,7 @@ const Login = () => {
                 </a>
             </div>
             <div className="users-login-form__btn-switch">
-                <span>New to MovieLog?</span>
+                <span>New to LOGFLIX?</span>
                 <a href="/join" className="users-login-form__btn-switch__create">Create your account &rarr;</a>
             </div>
         </form>
