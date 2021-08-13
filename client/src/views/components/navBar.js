@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 
 const SLink = styled(Link)`
-    color : ${props => props.current ? "#ffff" : "$mainColor" };
+    color : ${(props) => {return Boolean(props.current) ? "#ffff" : "$mainColor" }};
     transition: color 0.5s ease-in-out;
 `;
 
@@ -26,3 +26,6 @@ const NavBar = ({ location : { pathname }}) => {
     )
 };
 export default withRouter(NavBar);
+// https://wonit.tistory.com/303 참고
+// withRouter는 Router가 아닌 component에게 Router특성을 부여
+// Router는 location, match, history를 사용

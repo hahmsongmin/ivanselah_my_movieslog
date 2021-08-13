@@ -10,6 +10,7 @@ import Search from "./views/Routes/Search";
 import Home from "./views/Routes/Home";
 import TV from "./views/Routes/TV";
 import Movies from "./views/Routes/Movies";
+import Detail from "./views/Routes/Detail";
 
 export default () => (
     <BrowserRouter>
@@ -18,6 +19,8 @@ export default () => (
             <Route exact path="/" component={Home} />
             <Route exact path="/tv" component={TV} />
             <Route exact path="/movies" component={Movies} />
+            <Route exact path="/movies/:id([0-9]+)" component={Detail} />
+            <Route exact path="/tv/:id([0-9]+)" component={Detail} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/join" component={Join} />
             <Route exact path="/login" component={Login} />
@@ -25,3 +28,5 @@ export default () => (
         </Switch>
     </BrowserRouter>
 )
+
+// default Router => all Route들에게 props 전달
