@@ -7,6 +7,7 @@ const SLink = styled(Link)`
     transition: color 0.5s ease-in-out;
 `;
 
+
 const NavBar = ({ location : { pathname }}) => {
     return (
         <header className="nav-container">
