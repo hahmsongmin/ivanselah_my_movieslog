@@ -19,7 +19,7 @@ export default () => (
             <Route exact path="/" component={Home} />
             <Route exact path="/tv" component={TV} />
             <Route exact path="/movies" component={Movies} />
-            <Route exact path="/movies/:id([0-9]+)" component={Detail} />
+            <Route exact path="/movie/:id([0-9]+)" component={Detail} />
             <Route exact path="/tv/:id([0-9]+)" component={Detail} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/join" component={Join} />
