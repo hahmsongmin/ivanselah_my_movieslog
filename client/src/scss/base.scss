@@ -9,40 +9,14 @@
 @import "./components/form.scss";
 @import "./components/social-login.scss";
 @import "./components/shared.scss";
+@import "./components//loader.scss";
 
 // Screens 
-
-.movies-box{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15%, auto));
-    padding: 20vh;
-    row-gap: 10px;
-    column-gap: 20px;
-    .movies-box__movie {
-        text-align: center;
-        .movies-box__title{
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-    }
-}
-
-.loader{
-    padding: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 500px;
-    .loader__text {
-        font-size: 2rem;
-    }
-}
-
 
 body {
     font-family: 'Roboto', sans-serif;
     background-color: rgba(20,20,20,1);
+    padding-top: 150px;
     color: #ffff;
 }
 
