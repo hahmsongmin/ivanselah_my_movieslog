@@ -1,1 +1,4 @@
-export default () => "Home";
+const HomePresenter = () => "Home";
+
+
+export default HomePresenter;

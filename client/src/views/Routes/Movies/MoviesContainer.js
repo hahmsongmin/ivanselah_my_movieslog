@@ -3,7 +3,7 @@ import { moviesApi } from "../../../Api";
 import MoviesPresenter from "./MoviesPresenter";
 
 
-export default class extends React.Component{
+class MoviesContainer extends React.Component{
     state = {
         nowPlaying: null,
         upcoming: null,
@@ -47,3 +47,6 @@ export default class extends React.Component{
         );
     }
 }
+
+
+export default MoviesContainer;

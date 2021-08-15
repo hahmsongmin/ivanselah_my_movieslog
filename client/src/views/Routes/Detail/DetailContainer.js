@@ -2,7 +2,7 @@ import React from "react";
 import { moviesApi, tvApi } from "../../../Api";
 import DetailPresenter from "./DetailPresenter";
 
-export default class extends React.Component {
+class DetailContainer extends React.Component {
     constructor(props) {
         super(props);
         const { location : { pathname } } = props;
@@ -10,7 +10,7 @@ export default class extends React.Component {
             result: null,
             error: null,
             loading: false,
-            isMovie: pathname.includes("/movies/")
+            isMovie: pathname.includes("/movie/")
         };
     }
 
@@ -46,3 +46,5 @@ export default class extends React.Component {
         )
     }
 };
+
+export default DetailContainer;

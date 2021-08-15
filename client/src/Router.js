@@ -12,7 +12,7 @@ import TV from "./views/Routes/TV";
 import Movies from "./views/Routes/Movies";
 import Detail from "./views/Routes/Detail";
 
-export default () => (
+const Router = () => (
     <BrowserRouter>
         <NavBar />
         <Switch>
@@ -28,5 +28,8 @@ export default () => (
         </Switch>
     </BrowserRouter>
 )
+
+
+export default Router;
 
 // default Router => all Route들에게 props 전달

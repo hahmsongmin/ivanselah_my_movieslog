@@ -21,7 +21,7 @@ const MoviesPresenter = ({ nowPlaying, popular, upcoming, error, loading }) => l
             imageUrl={movie.poster_path}
             title={movie.original_title}
             rating={movie.vote_average}
-            year={movie.release_date.split("-")[0]}
+            year={movie.release_date ? movie.release_date.split("-")[0] : ""}
             isMovie={true}
         />)}</Section>}
         {upcoming && upcoming.length > 0 && <Section title="Upcoming Movies">{upcoming.map(movie => 
@@ -31,7 +31,7 @@ const MoviesPresenter = ({ nowPlaying, popular, upcoming, error, loading }) => l
             imageUrl={movie.poster_path}
             title={movie.original_title}
             rating={movie.vote_average}
-            year={movie.release_date.split("-")[0]}
+            year={movie.release_date ? movie.release_date.split("-")[0] : ""}
             isMovie={true}
         />)}</Section>}
         {popular && popular.length > 0 && <Section title="Popular Movies">{popular.map(movie => 
@@ -41,7 +41,7 @@ const MoviesPresenter = ({ nowPlaying, popular, upcoming, error, loading }) => l
             imageUrl={movie.poster_path}
             title={movie.original_title}
             rating={movie.vote_average}
-            year={movie.release_date.split("-")[0]}
+            year={movie.release_date ? movie.release_date.split("-")[0] : ""}
             isMovie={true}
         />)}</Section>}
 

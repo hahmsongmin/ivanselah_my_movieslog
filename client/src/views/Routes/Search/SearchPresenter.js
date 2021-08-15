@@ -68,7 +68,7 @@ const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, 
                 imageUrl={movie.poster_path}
                 title={movie.original_title}
                 rating={movie.vote_average}
-                year={movie.release_date.substring(0, 4)}
+                year={movie.release_date ? movie.release_date.substring(0, 4) : ""}
                 isMovie={true}
             />))}
            </Section>
