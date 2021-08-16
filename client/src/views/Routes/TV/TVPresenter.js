@@ -5,15 +5,22 @@ import Section from "../../components/Section";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import Poster from "../../components/Poster";
+import Helmet from "react-helmet";
 
 const Container = styled.div`
-    padding: 50px 50px;
+    padding: 50px 0px;
     width: 100%;
 `;
 
-const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => loading ? <Loader /> : (
+const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => (
+    <>
+    <Helmet>
+        <title>TV Program | Logflix</title>
+    </Helmet>
+    {loading ? ( <Loader /> 
+    ) : (
     <Container>
-        {topRated && topRated.length > 0 && <Section title="Top Rated TV">{topRated.map(tv=>
+        {topRated && topRated.length > 0 && <Section title="평점 TOP 프로그램">{topRated.map(tv=>
         <Poster 
             key={tv.id} 
             id={tv.id} 
@@ -24,7 +31,7 @@ const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => load
         />)}
         </Section>}
 
-        {popular && popular.length > 0 && <Section title="Popular TV">{popular.map(tv=>
+        {popular && popular.length > 0 && <Section title="인기 프로그램">{popular.map(tv=>
         <Poster 
             key={tv.id} 
             id={tv.id} 
@@ -35,7 +42,7 @@ const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => load
         />)}
         </Section>}
 
-        {airingToday && airingToday.length > 0 && <Section title="AiringToday TV">{airingToday.map(tv=>
+        {airingToday && airingToday.length > 0 && <Section title="오늘방영 프로그램">{airingToday.map(tv=>
         <Poster 
             key={tv.id} 
             id={tv.id} 
@@ -48,8 +55,9 @@ const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => load
 
         {error && <Message color="#e74c3c" text={error} />}
     </Container>
+    )}
+    </>
 );
-
 TVPresenter.propTypes = {
     topRated: PropTypes.array,
     popular: PropTypes.array,

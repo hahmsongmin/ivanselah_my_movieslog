@@ -6,9 +6,10 @@ import Loader from "../../components/Loader";
 import Section from "../../components/Section";
 import Message from "../../components/Message";
 import Poster from "../../components/Poster";
+import Helmet from "react-helmet";
 
 const Container = styled.div`
-    padding: 50px 50px;
+    padding: 50px 0px;
     width: 100%;
 `;
 
@@ -49,6 +50,9 @@ const SearchBox = styled.div`
 
 const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, handleSubmit, updateTerm }) => (
     <Container>
+        <Helmet>
+            <title>Search | Logflix</title>
+        </Helmet>
         <Form onSubmit={handleSubmit}>
             <SearchBox>
                 <Input placeholder="검색어를 입력해주세요" value={searchTerm} onChange={updateTerm}></Input>
@@ -60,7 +64,7 @@ const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, 
         ) : (
         <>
            {movieResults && movieResults.length > 0 && (
-            <Section title="Movie Results">
+            <Section title="영화">
                {movieResults.map(movie=> (
             <Poster 
                 key={movie.id} 
@@ -74,7 +78,7 @@ const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, 
            </Section>
            )}
            {tvResults && tvResults.length > 0 && (
-            <Section title="TV Results">
+            <Section title="TV프로그램">
                 {tvResults.map(tv=> (
             <Poster 
                 key={tv.id} 

@@ -1,9 +1,13 @@
 import React from "react";
 import { FaGithub } from "react-icons/fa";
+import Helmet from "react-helmet";
 
 const Login = () => {
     return (
         <>
+        <Helmet>
+            <title>Login | Logflix</title>
+        </Helmet>
         <div className="users-form">
             <span>LOGFLIX LOGIN</span>
         </div>

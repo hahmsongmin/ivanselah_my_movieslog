@@ -1,10 +1,14 @@
 import React from "react";
 import { FaGithub } from "react-icons/fa";
+import Helmet from "react-helmet";
 
 
 const Join = () => {
     return (
         <>
+        <Helmet>
+            <title>Join | Logflix</title>
+        </Helmet>
         <div className="users-form">
             <span>LOGFLIX JOIN</span>
         </div>

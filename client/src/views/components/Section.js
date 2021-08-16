@@ -10,15 +10,17 @@ const Container = styled.div`
 `;
 
 const Title = styled.span`
+    padding: 0px 20px;
     font-size: 1.3rem;
     font-weight: 600;
 `;
 
 const Grid = styled.div`
     margin-top: 25px;
+    padding: 0px 20px;
     display: grid;
     grid-template-columns: repeat(auto-fill, 200px);
-    grid-gap: 25px;
+    grid-gap: 20px;
 `;
 
 

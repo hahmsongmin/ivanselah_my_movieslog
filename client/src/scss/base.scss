@@ -9,7 +9,8 @@
 @import "./components/form.scss";
 @import "./components/social-login.scss";
 @import "./components/shared.scss";
-@import "./components//loader.scss";
+@import "./components/loader.scss";
+@import "./components/detail.scss";
 
 // Screens 
 
@@ -17,7 +18,6 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: rgba(20,20,20,1);
     padding-top: 90px;
-    padding-left: 50px;
     color: #ffff;
 }
 

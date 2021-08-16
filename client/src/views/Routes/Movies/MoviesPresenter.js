@@ -5,49 +5,59 @@ import Section from "../../components/Section";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import Poster from "../../components/Poster";
+import Helmet from "react-helmet";
 
 const Container = styled.div`
-    padding: 50px 50px;
+    padding: 50px 0px;
     width: 100%;
 `;
 
-const MoviesPresenter = ({ nowPlaying, popular, upcoming, error, loading }) => loading ? <Loader /> : 
-(
-    <Container>
-        {nowPlaying && nowPlaying.length > 0 && <Section title="Now Playing">{nowPlaying.map(movie => 
-        <Poster 
-            key={movie.id} 
-            id={movie.id} 
-            imageUrl={movie.poster_path}
-            title={movie.original_title}
-            rating={movie.vote_average}
-            year={movie.release_date ? movie.release_date.split("-")[0] : ""}
-            isMovie={true}
-        />)}</Section>}
-        {upcoming && upcoming.length > 0 && <Section title="Upcoming Movies">{upcoming.map(movie => 
-        <Poster 
-            key={movie.id} 
-            id={movie.id} 
-            imageUrl={movie.poster_path}
-            title={movie.original_title}
-            rating={movie.vote_average}
-            year={movie.release_date ? movie.release_date.split("-")[0] : ""}
-            isMovie={true}
-        />)}</Section>}
-        {popular && popular.length > 0 && <Section title="Popular Movies">{popular.map(movie => 
-        <Poster 
-            key={movie.id} 
-            id={movie.id} 
-            imageUrl={movie.poster_path}
-            title={movie.original_title}
-            rating={movie.vote_average}
-            year={movie.release_date ? movie.release_date.split("-")[0] : ""}
-            isMovie={true}
-        />)}</Section>}
+const MoviesPresenter = ({ nowPlaying, popular, upcoming, error, loading }) => (
+<>
+    <Helmet>
+        <title>Movies | Logflix</title>
+    </Helmet>
+    {loading ? ( 
+        <Loader /> 
+    ) : (
+        <Container>
+            {nowPlaying && nowPlaying.length > 0 && <Section title="현재 상영영화">{nowPlaying.map(movie => 
+            <Poster 
+                key={movie.id} 
+                id={movie.id} 
+                imageUrl={movie.poster_path}
+                title={movie.original_title}
+                rating={movie.vote_average}
+                year={movie.release_date ? movie.release_date.split("-")[0] : ""}
+                isMovie={true}
+            />)}</Section>}
+            {upcoming && upcoming.length > 0 && <Section title="업데이트 영화">{upcoming.map(movie => 
+            <Poster 
+                key={movie.id} 
+                id={movie.id} 
+                imageUrl={movie.poster_path}
+                title={movie.original_title}
+                rating={movie.vote_average}
+                year={movie.release_date ? movie.release_date.split("-")[0] : ""}
+                isMovie={true}
+            />)}</Section>}
+            {popular && popular.length > 0 && <Section title="박스오피스">{popular.map(movie => 
+            <Poster 
+                key={movie.id} 
+                id={movie.id} 
+                imageUrl={movie.poster_path}
+                title={movie.original_title}
+                rating={movie.vote_average}
+                year={movie.release_date ? movie.release_date.split("-")[0] : ""}
+                isMovie={true}
+            />)}</Section>}
 
-        {error && <Message color="#e74c3c" text={error} />}
-    </Container>
+            {error && <Message color="#e74c3c" text={error} />}
+        </Container>
+    )}
+</>
 );
+
 
 //https://velog.io/@eunjin/React-PropTypes-%EC%93%B0%EB%8A%94-%EC%9D%B4%EC%9C%A0-%EB%B0%A9%EB%B2%95 // typeScript 대안
 

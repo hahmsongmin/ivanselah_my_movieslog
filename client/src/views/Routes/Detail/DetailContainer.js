@@ -20,26 +20,30 @@ class DetailContainer extends React.Component {
         const numberId = Number(id); 
         
         let result = null;
+        let videos = null;
         try{
             if(isMovie) {
                 // const 빼고 처리 방법  동일방법 ==== const { data : result }
                 ({ data : result }= await moviesApi.movieDetail(numberId));
+                ({ data : { videos : { results : videos }}}= await moviesApi.movieDetail(numberId));
             } else {
                 ({ data : result }= await tvApi.tvDetail(numberId));
+                ({ data : { videos : { results : videos }}}= await tvApi.tvDetail(numberId));
             }
         }catch {
             this.setState({error : "Can't find anything."});
         }finally {
-            this.setState({ loading: false, result });
+            this.setState({ loading: false, result, videos });
         }
     }
 
     render() {
-        const { result, error, loading } = this.state;
+        const { result, videos, error, loading } = this.state;
         console.log(this.state);
         return (
             <DetailPresenter
                 result = {result}
+                videos = {videos}
                 error = {error}
                 loading = {loading}
             />

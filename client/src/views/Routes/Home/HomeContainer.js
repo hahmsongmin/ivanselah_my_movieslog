@@ -6,40 +6,35 @@ import HomePresenter from "./HomePresenter";
 class HomeContainer extends React.Component{
     state = {
         nowPlaying: null,
-        upcoming: null,
-        popular: null,
         error: null,
-        loading: true
+        loading: true,
     };
-
     async componentDidMount(){
+        let videos = null;
         try{
             const {data : {results : nowPlaying }} = await moviesApi.nowPlaying();
-            const {data : {results : upcoming }} = await moviesApi.upcoming();
-            const {data : {results : popular }} = await moviesApi.popular();
-            this.setState({
-                nowPlaying,
-                upcoming,
-                popular
-            })
+            const moviesId = nowPlaying.map(movieId => movieId.id)
+            const movieId = moviesId[0];
+            ({ data : { videos : { results : videos }}}= await moviesApi.movieDetail(movieId));
+        this.setState({
+            nowPlaying
+        });
         }catch{
             this.setState({
                 error: "Can't find movies informaion."
             })
         }finally{
-            this.setState({
-                loading: false
-            })
+            this.setState({loading: false, videos})
         }
     }
     render() {
-        const { nowPlaying, upcoming, popular, error, loading } 
+        console.log(this.state);
+        const { nowPlaying, videos, error, loading } 
         = this.state;
         return (
             <HomePresenter 
             nowPlaying = {nowPlaying} 
-            upcoming = {upcoming} 
-            popular = {popular} 
+            videos = {videos}
             error = {error}
             loading = {loading}
             />
