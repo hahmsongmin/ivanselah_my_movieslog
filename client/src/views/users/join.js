@@ -1,8 +1,14 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
+import styled from "styled-components";
 import Helmet from "react-helmet";
 import axios from "axios";
+
+const ErrorMessage = styled.span`
+    color:  #f39c12;
+`;
+
 
 class Join extends React.Component {
     constructor(props) {
@@ -12,10 +18,10 @@ class Join extends React.Component {
             isJoinOK : false,
             joinError: null,
         }
-        this.submitJoin = this.submitJoin.bind(this);
+
     }
 
-    async submitJoin(event) {
+        submitJoin = async(event) => {
         event.preventDefault();
         const email = event.target.email.value;
         const username = event.target.username.value;
@@ -32,13 +38,20 @@ class Join extends React.Component {
                     password2,
                 },
             })
-            this.setState({joinSeccess : response.data})
-        } catch {
-            console.log("❌에러");
-        } finally {
-            this.setState({isJoinOK : true})
-        }
-
+            if(!response.data.error){
+                this.setState({
+                    joinSeccess : response.data,
+                    isJoinOK : true,
+                })
+            } else {
+                this.setState({
+                    isJoinOK : false,
+                    joinError : response.data.error,
+                })
+            }
+        } catch(error) {
+            this.setState({joinError : error.message});
+        } 
     };
     
     render(){
@@ -49,11 +62,11 @@ class Join extends React.Component {
                     <title>Join | Logflix</title>
                 </Helmet>
                 {isJoinOK ? (
-                    <Redirect to="/" />
+                    <Redirect to="/login" />
                 ) : (
                     <>
                     <div className="users-form">
-                        <span>LOGFLIX JOIN</span>
+                        {joinError ? <ErrorMessage>{joinError}</ErrorMessage> : <span>LOGFLIX JOIN</span>}
                     </div>
                     <form Method="POST" onSubmit={this.submitJoin} className="users-join-form">
                         <input placeholder="Email" name="email" type="email" required autoComplete="off" />
@@ -62,13 +75,13 @@ class Join extends React.Component {
                         <input placeholder="Confirm Password" name="password2" type="password" required autoComplete="off"/>
                         <input type="submit" value="Join" />
                         <div className="social-login">
-                            <a href="" className="social-login__btn">
+                            <Link to="" className="social-login__btn">
                                 <FaGithub className="github-icon"></FaGithub> 깃허브 로그인 &rarr;
-                            </a>
+                            </Link>
                         </div>
                         <div className="users-join-form__btn-switch">
                             <span>Already have an account?</span>
-                            <a href="/login" className="users-join-form__btn-switch__create">Login now &rarr;</a>
+                            <Link to="/login" className="users-join-form__btn-switch__create">Login now &rarr;</Link>
                         </div>
                     </form>
                     </>

@@ -4,12 +4,12 @@ export const postJoin = async (req, res) => {
     const { email, username, password, password2 } = req.body;
     if(password !== password2){
         console.log("❌ password is wrong.");
-        return res.status(400).send({ error : "password is wrong." });
+        return res.send({ error : "Password confirmation does not match." });
     }
     const exists = await User.exists({$or: [{username}, {email}]});
     if(exists){
         console.log("❌ already using.");
-        return res.status(400).send({ error : "username/email is already using."});
+        return res.send({ error : "This Username / Email is already using."});
     }
     try{
         await User.create({

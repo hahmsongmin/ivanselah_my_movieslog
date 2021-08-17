@@ -1,6 +1,7 @@
 import React from "react";
 import { FaGithub } from "react-icons/fa";
 import Helmet from "react-helmet";
+import { Redirect, Link } from "react-router-dom";
 
 const Login = () => {
     return (
@@ -16,13 +17,13 @@ const Login = () => {
             <input placeholder="Password" name="password" type="password" required autoComplete="off"/>
             <input type="submit" value="Login" />
             <div className="social-login">
-                <a href="" className="social-login__btn">
+                <Link to="" className="social-login__btn">
                     <FaGithub className="github-icon"></FaGithub> 깃허브 로그인 &rarr;
-                </a>
+                </Link>
             </div>
             <div className="users-login-form__btn-switch">
                 <span>New to LOGFLIX?</span>
-                <a href="/join" className="users-login-form__btn-switch__create">Create your account &rarr;</a>
+                <Link to="/join" className="users-login-form__btn-switch__create">Create your account &rarr;</Link>
             </div>
         </form>
         </>
