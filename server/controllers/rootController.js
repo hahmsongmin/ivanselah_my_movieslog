@@ -1,4 +1,5 @@
 import User from "../models/User";
+import bcrypt from "bcrypt";
 
 export const postJoin = async (req, res) => {
     const { email, username, password, password2 } = req.body;
@@ -24,4 +25,19 @@ export const postJoin = async (req, res) => {
         return res.status(400).send({ error : error.message });
     }
 };
-export const postLogin = (req, res) => {};
+
+export const postLogin = async(req, res) => {
+    const { email, password } = req.body;
+    const user = await User.findOne({email, socialOnly: false});
+    if(!user){
+        return res.send({ error : "An account with this email does not exists."});
+    }
+    const passwordCheck = await bcrypt.compare(password, user.password);
+    if(!passwordCheck){
+        return res.send({ error : "Wrong Password!"});
+    }
+    console.log("✅ Login Success");
+    req.session.loggedIn = true;
+    req.session.user = user;
+    return res.send("success");
+};

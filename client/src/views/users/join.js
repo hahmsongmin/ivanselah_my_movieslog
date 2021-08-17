@@ -29,7 +29,7 @@ class Join extends React.Component {
         const password2 = event.target.password2.value;
 
         try{
-            const response = await axios("http://localhost:7777/join", {
+            const response = await axios("http://localhost:7778/join", {
                 method: "post",
                 data: {
                     email,
