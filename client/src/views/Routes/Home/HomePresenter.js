@@ -5,6 +5,7 @@ import HomeSection from "../../components/HomeSection";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import HomePoster from "../../components/HomePoster";
+import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
 
 const Container = styled.div`
@@ -48,6 +49,7 @@ const HomeTextButton = styled.button`
     background-color: #e20813;
     border: none;
     border-radius: 25px;
+    cursor: pointer;
 `;
 
 
@@ -65,7 +67,7 @@ const HomePresenter = ({popular, videos, error, loading}) => (
                 <HomeText>
                     <h1>영화, TV프로그램 정보를 검색, 기록</h1>
                     <p>콘텐츠를 저장하고 기록하세요.</p>
-                    <HomeTextButton>가입하고 이용시작</HomeTextButton>
+                    <Link to="/join"><HomeTextButton>가입하고 이용시작</HomeTextButton></Link>
                 </HomeText>
                 {error && <Message color="#e74c3c" text={error} />}
                 <iframe className="HomeYoutube" src={videos?.length > 0 ? `https://www.youtube.com/embed/${videos[0].key}?&autoplay=1&loop=1&autohide=1&playlist=${videos[0].key}` : ""}></iframe>
