@@ -5,19 +5,30 @@ import HomePresenter from "./HomePresenter";
 
 class HomeContainer extends React.Component{
     state = {
-        nowPlaying: null,
+        popular: null,
+        videos: null,
         error: null,
         loading: true,
     };
     async componentDidMount(){
         let videos = null;
+        let movieId = null;
         try{
-            const {data : {results : nowPlaying }} = await moviesApi.nowPlaying();
-            const moviesId = nowPlaying.map(movieId => movieId.id)
-            const movieId = moviesId[0];
-            ({ data : { videos : { results : videos }}}= await moviesApi.movieDetail(movieId));
+            const {data : {results : popular }} = await moviesApi.popular();
+            const moviesId = popular.map(movieId => movieId.id)
+            while(true){
+                movieId = moviesId[Math.floor(Math.random() * 10)];
+                if(movieId){
+                    ({ data : { videos : { results : videos }}}= await moviesApi.movieDetail(movieId));
+                    if (videos.length === 0){
+                        continue;
+                    } else {
+                        break;
+                    }
+                }
+            }
         this.setState({
-            nowPlaying
+            popular,
         });
         }catch{
             this.setState({
@@ -29,11 +40,11 @@ class HomeContainer extends React.Component{
     }
     render() {
         console.log(this.state);
-        const { nowPlaying, videos, error, loading } 
+        const { popular, videos, error, loading } 
         = this.state;
         return (
             <HomePresenter 
-            nowPlaying = {nowPlaying} 
+            popular = {popular} 
             videos = {videos}
             error = {error}
             loading = {loading}
