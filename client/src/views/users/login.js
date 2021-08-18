@@ -26,18 +26,20 @@ class Login extends React.Component {
         const email = event.target.email.value;
         const password = event.target.password.value;
         try {
-            const response = await axios("http://localhost:7778/login", {
+            const response = await axios("http://localhost:7777/login", {
                 method : "post",
                 data : {
                     email,
                     password,
-                }
+                },
+                withCredentials: true,
             });
             if(!response.data.error){
                 this.setState({
                     LoginSeccess : response.data,
                     isLoginOK : true,
                 })
+                sessionStorage.setItem('loggedIn', true);
             } else {
                 this.setState({
                     LoginError : response.data.error,
@@ -46,7 +48,7 @@ class Login extends React.Component {
             }
         } catch(error) {
             this.setState({LoginError : error.message});
-        }
+        } 
     }
     
     render(){
@@ -56,8 +58,8 @@ class Login extends React.Component {
         <Helmet>
             <title>Login | Logflix</title>
         </Helmet>
-        { isLoginOK ? (
-            <Redirect to="/" />
+        { isLoginOK ? ( 
+            window.location.replace("/")
         ) : (
             <>
             <div className="users-form">

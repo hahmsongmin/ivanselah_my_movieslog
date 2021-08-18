@@ -14,10 +14,10 @@ search for movie, register it and write my own log.
 
 - [x] home + 
 - [x] join(+github) +
-- [ ] login, logout +
-- [ ] search +
-- [ ] movies +
-- [ ] movieDetail +
+- [x] login, logout +
+- [x] search +
+- [x] movies +
+- [x] movieDetail +
 - [ ] logSpace +
 
 

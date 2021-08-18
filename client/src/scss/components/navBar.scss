@@ -31,13 +31,16 @@
         align-items: center;
     }
     .nav__navigation-right{
-        width: 200px;
+        width: 400px;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: flex-start;
         align-items: center;
         color: #ffff;
         font-family: bold;
         a {
+            &:first-child {
+                margin-left: 30px;
+            }
             margin-left: 20px;
             cursor: pointer;
         }

@@ -29,7 +29,7 @@ class Join extends React.Component {
         const password2 = event.target.password2.value;
 
         try{
-            const response = await axios("http://localhost:7778/join", {
+            const response = await axios("http://localhost:7777/join", {
                 method: "post",
                 data: {
                     email,
@@ -68,7 +68,7 @@ class Join extends React.Component {
                     <div className="users-form">
                         {joinError ? <ErrorMessage>{joinError}</ErrorMessage> : <span>LOGFLIX JOIN</span>}
                     </div>
-                    <form Method="POST" onSubmit={this.submitJoin} className="users-join-form">
+                    <form method="POST" onSubmit={this.submitJoin} className="users-join-form">
                         <input placeholder="Email" name="email" type="email" required autoComplete="off" />
                         <input placeholder="Username" name="username" type="text" required autoComplete="off" />
                         <input placeholder="Password" name="password" type="password" required autoComplete="off"/>
