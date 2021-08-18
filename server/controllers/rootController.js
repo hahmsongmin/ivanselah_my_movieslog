@@ -1,6 +1,11 @@
 import User from "../models/User";
 import bcrypt from "bcrypt";
 
+// React 랜더링 전 User Session 정보 확인
+
+export const home = (req, res) => {
+    return res.send(req.session.user);
+};
 
 // User 정보 
 
@@ -67,4 +72,4 @@ export const postLogSave = async(req, res) => {
 };
 
 
-/// Log 스키마 설정, User 스키마 .. 연동, 그리고 내공간 UI
+/// Log 스키마 설정, User 스키마, user _id로 연동 .. 연동, 그리고 내공간 UI

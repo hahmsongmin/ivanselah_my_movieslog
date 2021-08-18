@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { moviesApi } from "../../../Api";
 import HomePresenter from "./HomePresenter";
@@ -8,6 +9,7 @@ class HomeContainer extends React.Component{
         popular: null,
         videos: null,
         error: null,
+        user : null,
         loading: true,
     };
     async componentDidMount(){
@@ -37,15 +39,21 @@ class HomeContainer extends React.Component{
         }finally{
             this.setState({loading: false, videos})
         }
+        const user = await axios("http://localhost:7777/", {
+            method : "get",
+            withCredentials: true
+        });
+        this.setState({ user : user.data.username })
     }
     render() {
-        console.log(this.state);
-        const { popular, videos, error, loading } 
+        const { popular, videos, user, error, loading } 
         = this.state;
+        console.log(this.state);
         return (
             <HomePresenter 
             popular = {popular} 
             videos = {videos}
+            user = {user}
             error = {error}
             loading = {loading}
             />
