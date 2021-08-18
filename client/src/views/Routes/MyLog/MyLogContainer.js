@@ -7,6 +7,7 @@ class MyLogContainer extends React.Component {
         super(props);
         const { location : { pathname } } = props;
         this.state = {
+            id : null,
             result: null,
             error: null,
             loading: false,
@@ -23,7 +24,6 @@ class MyLogContainer extends React.Component {
         let videos = null;
         try{
             if(isMovie) {
-                // const 빼고 처리 방법  동일방법 ==== const { data : result }
                 ({ data : result }= await moviesApi.movieDetail(numberId));
                 ({ data : { videos : { results : videos }}}= await moviesApi.movieDetail(numberId));
             } else {
@@ -38,7 +38,7 @@ class MyLogContainer extends React.Component {
     }
 
     render() {
-        const { result, videos, error, loading } = this.state;
+        const { result, videos, error, loading, id } = this.state;
         console.log(this.state);
         return (
             <MyLogPresenter

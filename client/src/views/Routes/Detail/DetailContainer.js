@@ -7,6 +7,7 @@ class DetailContainer extends React.Component {
         super(props);
         const { location : { pathname } } = props;
         this.state = {
+            id : null,
             result: null,
             error: null,
             loading: false,
@@ -33,20 +34,22 @@ class DetailContainer extends React.Component {
         }catch {
             this.setState({error : "Can't find anything."});
         }finally {
-            this.setState({ loading: false, result, videos });
+            this.setState({ loading: false, result, videos, id });
         }
     }
 
     render() {
-        const { result, videos, error, loading } = this.state;
+        const { result, videos, error, loading} = this.state;
         console.log(this.state);
         return (
+            <>
             <DetailPresenter
                 result = {result}
                 videos = {videos}
                 error = {error}
                 loading = {loading}
             />
+            </>
         )
     }
 };

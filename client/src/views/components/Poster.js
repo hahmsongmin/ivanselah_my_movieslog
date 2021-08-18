@@ -19,7 +19,7 @@ const Rating = styled.span`
     bottom: 0;
     background: rgba(0, 0, 0, 0.8); 
     color: #f1f1f1;
-    width: 80%;
+    width: 100%;
     transition: .5s ease-in-out;
     opacity:0;
     color: white;
@@ -41,6 +41,7 @@ const ImageContainer = styled.div`
 `;
 
 const Title = styled.span`
+    color: #ffff;
     display: block;
     font-size: 17px;
     margin-bottom: 5px;

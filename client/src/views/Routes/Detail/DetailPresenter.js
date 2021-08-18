@@ -4,6 +4,10 @@ import styled from "styled-components";
 import Loader from "../../components/Loader";
 import Helmet from "react-helmet";
 import Message from "../../components/Message";
+import { Link } from "react-router-dom";
+import { BsPencilSquare } from "react-icons/bs";
+import { Modal } from 'react-bootstrap';
+import axios from "axios";
 
 const Container = styled.div`
     display: flex;
@@ -41,7 +45,6 @@ const Cover = styled.div`
     z-index: 20;
 `;
 
-// 부모에 width 없으면 자식에게도 width 없음
 const Content = styled.div`
     padding: 10px;
     width: 100%;
@@ -94,8 +97,67 @@ const Company = styled.div`
     font-weight: bold;
 `;
 
+const Log = styled.div`
+    font-size: 20px;
+    cursor: pointer;
+    color: #f39c12;
+`;
 
-const DetailPresenter = ({ result , videos, error, loading }) => (
+const LogIcon = styled(BsPencilSquare)`
+    font-size: 3rem;
+`;
+
+/* Modal 은 scss로 */
+
+const MyVerticallyCenteredModal = (props) => {
+
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter" className="ModalTitle">
+          {`${props.result?.original_title ? props.result?.original_title : props.result?.original_name}⭐`}
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="ModalBody">
+        <div className="messageSender">
+          <div className="messageSender__top">
+            <form method="POST" onSubmit={async(event)=>{
+                event.preventDefault();
+                const logText = event.target.content.value;
+                const logId = props.result?.id;
+                try {
+                    const response = await axios("http://localhost:7777/logsave", {
+                        method : "post",
+                        data : {
+                            logInfo : {
+                                logText,
+                                logId,
+                            }
+                        },
+                        withCredentials: true,
+                    });
+                } catch (error) {
+                    console.log("logSave ❌", error.message);
+                }
+            }} >
+              <textarea className="messageSender__input" placeholder="리뷰를 작성해주세요." type="text" name="content" />
+              <button className="messageSenderBtn" onClick={props.onHide}>저장</button>
+            </form>
+          </div>
+        </div>
+      </Modal.Body>
+    </Modal>
+  );
+}
+
+const DetailPresenter = ({ result , videos, error, loading }) => {
+    const [modalShow, setModalShow] = React.useState(false);
+    return (
     loading ? 
     ( 
      <>
@@ -117,6 +179,14 @@ const DetailPresenter = ({ result , videos, error, loading }) => (
                 <Cover bgImage={`https://image.tmdb.org/t/p/original/${result?.poster_path}`}/>
                 <Content>
                         <Title>{result?.original_title ? result?.original_title : result?.original_name}</Title>
+                        <Log>
+                            <div onClick={() => setModalShow(true)}><LogIcon />로그하기</div>
+                            <MyVerticallyCenteredModal
+                                show={modalShow}
+                                onHide={() => setModalShow(false)}
+                                result={result}
+                            />
+                        </Log>
                     <Data>
                         <InfoContainer>
                             <Year>{result?.release_date ? result?.release_date ? result?.release_date.split("-")[0] : "" : result?.first_air_date ? result?.first_air_date.substring(0, 4) : ""}</Year>
@@ -142,8 +212,9 @@ const DetailPresenter = ({ result , videos, error, loading }) => (
                 </Content>
             </ContainerInner>
         </Container>
+        )
     )
-);
+};
 
 DetailPresenter.propTypes = {
     result: PropTypes.object,

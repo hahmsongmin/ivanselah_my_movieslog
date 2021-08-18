@@ -1,6 +1,9 @@
 import User from "../models/User";
 import bcrypt from "bcrypt";
 
+
+// User 정보 
+
 export const postJoin = async (req, res) => {
     const { email, username, password, password2 } = req.body;
     if(password !== password2){
@@ -46,3 +49,22 @@ export const getLogout = (req, res) => {
     req.session.destroy();
     return res.json({ logoutIn : true });
 };
+
+
+// Log 저장
+export const postLogSave = async(req, res) => {
+    const { logInfo } = req.body;
+    const { session : { user : { _id : id}}} = req;
+    try {
+        const updateUser = await User.findByIdAndUpdate(id, {
+            logInfo,
+        }, {new: true} );
+        req.session.user = updateUser;
+        return res.status(200);
+    } catch {
+        return res.status(400);
+    }
+};
+
+
+/// Log 스키마 설정, User 스키마 .. 연동, 그리고 내공간 UI

@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     password: {type:String, required: false},
     avatarUrl: String,
     socialOnly: {type: Boolean, default: false},
-    movies: [{type: Number}]
+    logInfo : [{logText : String, logId: Number}]
 });
  
 userSchema.pre("save", async function(){

@@ -11,7 +11,10 @@
 @import "./components/shared.scss";
 @import "./components/loader.scss";
 @import "./components/detail.scss";
+@import "./components/modal.scss";
+
 // Screens 
+@import "./Screens/mylog.scss";
 
 body {
     font-family: 'Roboto', sans-serif;
