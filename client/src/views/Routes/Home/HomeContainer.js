@@ -5,14 +5,17 @@ import HomePresenter from "./HomePresenter";
 
 
 class HomeContainer extends React.Component{
-    state = {
-        popular: null,
-        videos: null,
-        error: null,
-        user : null,
-        loading: true,
-    };
-    async componentDidMount(){
+    constructor(props){
+        super(props);
+        this.state = {
+            popular: null,
+            videos: null,
+            error: null,
+            user : null,
+            loading: true,
+        };
+    }
+    componentDidMount = async () => {
         let videos = null;
         let movieId = null;
         try{
@@ -39,16 +42,11 @@ class HomeContainer extends React.Component{
         }finally{
             this.setState({loading: false, videos})
         }
-        const user = await axios("http://localhost:7777/", {
-            method : "get",
-            withCredentials: true
-        });
-        this.setState({ user : user.data.username })
     }
     render() {
-        const { popular, videos, user, error, loading } 
+        const { user } = this.props;
+        const { popular, videos, error, loading } 
         = this.state;
-        console.log(this.state);
         return (
             <HomePresenter 
             popular = {popular} 

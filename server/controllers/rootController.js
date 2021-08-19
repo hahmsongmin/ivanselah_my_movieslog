@@ -4,8 +4,14 @@ import bcrypt from "bcrypt";
 // React 랜더링 전 User Session 정보 확인
 
 export const home = (req, res) => {
-    return res.send(req.session.user);
+    return res.json(req.session);
 };
+
+export const getLogout = (req, res) => {
+    req.session.destroy();
+    return res.status(200);
+};
+
 
 // User 정보 
 
@@ -48,11 +54,6 @@ export const postLogin = async(req, res) => {
     req.session.loggedIn = true;
     req.session.user = user;
     return res.status(200).json({ loggedIn : true, loginData : req.session.user });
-};
-
-export const getLogout = (req, res) => {
-    req.session.destroy();
-    return res.json({ logoutIn : true });
 };
 
 

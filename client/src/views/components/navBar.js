@@ -1,41 +1,45 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
 const SLink = styled(Link)`
-    color : ${(props) => {return Boolean(props.current) ? "#ffff" : "$mainColor" }};
+    color : ${(props) => {return Boolean(props.selected) ? "#ffff" : "$mainColor" }};
     transition: color 0.5s ease-in-out;
 `;
 
 
-const NavBar = ({ location : { pathname }}) => {
-
-    const LoginSeccess = sessionStorage.getItem('loggedIn');
+const NavBar = (props) => {
+    const { location : { pathname }} = props;
+    let loggedIn = false;
+    try {
+        const { user } = props;
+        loggedIn = Boolean(user.loggedIn);
+    } catch(error) {
+        console.log(error);
+    }
     return (
         <>
-        {LoginSeccess ? (
+        {loggedIn ? (
             <header className="nav-container">
                 <div className="nav__header">
                     <div className="nav__navigation-left">
-                        <SLink to="/" current={(pathname === "/")}><div className="nav__logo">LOGFLIX</div></SLink>
-                        <SLink to="/movies" current={(pathname === "/movies")}>영화</SLink>
-                        <SLink to="/tv" current={(pathname === "/tv")}>TV프로그램</SLink>
-                        <SLink to="/search" current={(pathname === "/search")}>검색</SLink>
+                        <SLink to="/" selected={(pathname === "/")}><div className="nav__logo">LOGFLIX</div></SLink>
+                        <SLink to="/movies" selected={(pathname === "/movies")}>영화</SLink>
+                        <SLink to="/tv" selected={(pathname === "/tv")}>TV프로그램</SLink>
+                        <SLink to="/search" selected={(pathname === "/search")}>검색</SLink>
                     </div>
-                    <div className="nav__navigation-right">
-                        <Link onClick={async()=>{
-                                const response = await axios("http://localhost:7777/logout", {
-                                    method : "get",
-                                    withCredentials: true,
-                                })
-                                if(response.data.logoutIn){
-                                    sessionStorage.removeItem('loggedIn');
-                                }}, () => {
-                                    sessionStorage.removeItem('loggedIn');
-                                    window.location.replace("/");
-                                }}
-                        >로그아웃</Link>
+                    <div className="nav__navigation-right-Login">
+                        <a onClick={async()=>{
+                                try {
+                                    await axios("http://localhost:7777/logout", {
+                                        method : "get",
+                                        withCredentials: true,
+                                    })
+                                } catch(error) {
+                                    console.log(error)
+                                } 
+                            }} href="/" >로그아웃</a>
                         <Link to="/mylog">내공간</Link>
                     </div>
                 </div>
@@ -44,7 +48,7 @@ const NavBar = ({ location : { pathname }}) => {
             <header className="nav-container">
                 <div className="nav__header">
                     <div className="nav__navigation-left">
-                        <SLink to="/" current={(pathname === "/")}><div className="nav__logo">LOGFLIX</div></SLink>
+                        <SLink to="/" selected={(pathname === "/")}><div className="nav__logo">LOGFLIX</div></SLink>
                     </div>
                     <div className="nav__navigation-right">
                         <Link to="/login">로그인</Link>

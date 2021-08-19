@@ -23,6 +23,19 @@ app.use(
     })
 );
 
+// app.use((req,res,next)=>{
+//     console.log(req.headers);
+//     next();
+// })
+
+// // 브라우저(새로고침시) --> 쿠키 전달 확인 
+// app.use((req,res,next)=>{
+//     req.sessionStore.all((error, sessions) => {
+//         console.log(sessions);
+//         next();
+//     })
+// })
+
 
 app.use(express.json());
 app.use(express.urlencoded( {extended : true } ))

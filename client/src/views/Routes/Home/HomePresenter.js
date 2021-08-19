@@ -60,7 +60,11 @@ const HomeTextUser = styled.span`
 `;
 
 
-const HomePresenter = ({popular, videos, user, error, loading}) => (
+const HomePresenter = (props) => {
+    const { popular, videos, error, loading } = props;
+    let user = false;
+    {console.log(props, "❌")}
+    return (
     <>
         <Helmet>
             <title>Welcome | Logflix</title>
@@ -92,7 +96,8 @@ const HomePresenter = ({popular, videos, user, error, loading}) => (
         </Container>
         )}
     </>
-);
+    )
+};
 
 HomePresenter.propTypes = {
     popular: PropTypes.array,

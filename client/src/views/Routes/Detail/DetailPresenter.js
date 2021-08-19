@@ -145,7 +145,7 @@ const MyVerticallyCenteredModal = (props) => {
                     console.log("logSave ❌", error.message);
                 }
             }} >
-              <textarea className="messageSender__input" placeholder="리뷰를 작성해주세요." type="text" name="content" />
+              <textarea className="messageSender__input" placeholder="여기에 기록하세요." type="text" name="content" />
               <button className="messageSenderBtn" onClick={props.onHide}>저장</button>
             </form>
           </div>
