@@ -13,6 +13,13 @@ export const getLogout = (req, res) => {
     return res.status(200);
 };
 
+export const postMyLogInfo = async(req, res) => {
+    const { user : { _id : id } } = req.session;
+    const { user } = req.session;
+    const myLog = await MyLog.findOne({userId : id});
+    return res.json({myLog, user}); 
+};
+
 
 // User 정보 
 
@@ -62,9 +69,7 @@ export const postLogin = async(req, res) => {
 export const postLogSave = async(req, res) => {
     const { logInfo } = req.body;
     const { session : { user : { _id : id}}} = req;
-    console.log(id);
     const myLog = await MyLog.findOne({userId : id});
-    console.log(myLog);
     if(!myLog){
         try{
             await MyLog.create({
@@ -78,7 +83,7 @@ export const postLogSave = async(req, res) => {
     } else {
         try {
             await MyLog.findOneAndUpdate({userId : id},
-                { $push : { contents : logInfo},
+                { $push : { contents : logInfo },
             })
             return res.status(200).json({ updateOk : "success"});
         } catch(error) {
@@ -88,4 +93,4 @@ export const postLogSave = async(req, res) => {
 };
 
 
-/// Log 스키마 설정, User 스키마, user _id로 연동 .. 연동, 그리고 내공간 UI
+///  그리고 내공간 UI

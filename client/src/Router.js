@@ -12,7 +12,6 @@ import TV from "./views/Routes/TV";
 import Movies from "./views/Routes/Movies";
 import Detail from "./views/Routes/Detail";
 import MyLog from "./views/Routes/MyLog";
-import HomeContainer from "./views/Routes/Home/HomeContainer";
 
 const Router = ({user}) => (
     <BrowserRouter>
@@ -26,7 +25,7 @@ const Router = ({user}) => (
             <Route exact path="/search" component={Search} />
             <Route exact path="/join" component={Join} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/mylog" component={MyLog} />
+            <Route exact path="/mylog" render={()=><MyLog user={user} />} />
             <Redirect from="*" to="/" />
         </Switch>
     </BrowserRouter>

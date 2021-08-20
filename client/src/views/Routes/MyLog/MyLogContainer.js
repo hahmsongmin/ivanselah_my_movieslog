@@ -1,49 +1,57 @@
-import React from "react";
+import axios from "axios";
+import React, {Component} from "react";
 import { moviesApi, tvApi } from "../../../Api";
 import MyLogPresenter from "./MyLogPresenter";
 
-class MyLogContainer extends React.Component {
+class MyLogContainer extends Component {
     constructor(props) {
         super(props);
-        const { location : { pathname } } = props;
         this.state = {
-            id : null,
-            result: null,
+            contents : null,
+            username : null,
+            moviesResults: null,
+            tvResults : null, 
             error: null,
-            loading: false,
-            isMovie: pathname.includes("/movie/")
+            loading: true,
         };
     }
-
     async componentDidMount() {
-        const { match : { params : { id } } } = this.props;
-        const { isMovie } = this.state;
-        const numberId = Number(id); 
-        
-        let result = null;
-        let videos = null;
-        try{
-            if(isMovie) {
-                ({ data : result }= await moviesApi.movieDetail(numberId));
-                ({ data : { videos : { results : videos }}}= await moviesApi.movieDetail(numberId));
-            } else {
-                ({ data : result }= await tvApi.tvDetail(numberId));
-                ({ data : { videos : { results : videos }}}= await tvApi.tvDetail(numberId));
-            }
-        }catch {
-            this.setState({error : "Can't find anything."});
-        }finally {
-            this.setState({ loading: false, result, videos });
+        let temp = null;
+        try {
+            const { data } = await axios("http://localhost:7777/myLogInfo", {
+            method : "post",
+            withCredentials: true})
+            this.setState({
+                username : data.user.username,
+            })
+            temp = data.myLog.contents;
+        } catch(error) {
+            this.setState({ error : error.message })
         }
+        temp.map(async(item)=>{
+            let movies = null;
+            let tv = null;
+            try{
+                movies = await moviesApi.movieDetail(item.logId);
+                tv = await tvApi.tvDetail(item.logId);    
+            }catch(error){
+                this.setState({ error : error.message })
+            }finally {
+                this.setState({
+                    moviesResults : movies,
+                    tvResults : tv,
+                    loading : false,
+                })
+            } 
+        })
     }
-
     render() {
-        const { result, videos, error, loading, id } = this.state;
-        console.log(this.state);
+        const { moviesResults, tvResults, username, error, loading } = this.state;
         return (
             <MyLogPresenter
-                result = {result}
-                videos = {videos}
+                moviesResults = {moviesResults}
+                tvResults = {tvResults}
+                username = {username}
                 error = {error}
                 loading = {loading}
             />

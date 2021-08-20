@@ -22,30 +22,17 @@ const Backdrop = styled.div`
 `;
 
 
-const MyLogPresenter = ({ result, videos, error, loading }) => (
+const MyLogPresenter = ({ moviesResults, tvResults, username, error, loading }) => (
      <>
         <Helmet>
             <title>MyLog | Logflix</title>
         </Helmet>
-        {loading ? (
-        <Loader /> 
-        ) : (
+        {loading ?
+        ( <Loader /> ) :
+        error ? <Message color="#e74c3c" text = {error} /> :
+        (
         <>
-        <div className="myNavBar">
-            <title>{result?.original_title ? result?.original_title : result?.original_name}</title>
-            <div className="myNavBarOption">
-                <FaHome className="myNavBarIcons"/>
-                <h2>홈</h2>
-            </div>
-            <div className="myNavBarOption">
-                <BsPencil className="myNavBarIcons" />
-                <h2>기록하기</h2>
-            </div>
-            <div className="myNavBarOption">
-                <FaUserCircle className="myNavBarIcons"/>
-                <h2>정보수정</h2>
-            </div>
-        </div>
+            
         </>
         )}
     </>
