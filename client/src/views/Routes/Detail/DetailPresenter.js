@@ -4,7 +4,6 @@ import styled from "styled-components";
 import Loader from "../../components/Loader";
 import Helmet from "react-helmet";
 import Message from "../../components/Message";
-import { Link } from "react-router-dom";
 import { BsPencilSquare } from "react-icons/bs";
 import { Modal } from 'react-bootstrap';
 import axios from "axios";
@@ -141,6 +140,7 @@ const MyVerticallyCenteredModal = (props) => {
                         },
                         withCredentials: true,
                     });
+                    console.log(response, "front✅");
                 } catch (error) {
                     console.log("logSave ❌", error.message);
                 }

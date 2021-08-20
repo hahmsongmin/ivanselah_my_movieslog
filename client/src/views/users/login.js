@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FaGithub } from "react-icons/fa";
 import Helmet from "react-helmet";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -10,7 +10,7 @@ const ErrorMessage = styled.span`
 `;
 
 
-class Login extends React.Component {
+class Login extends Component {
     constructor(props) {
     super(props);
     this.state = {

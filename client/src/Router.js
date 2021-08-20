@@ -18,7 +18,7 @@ const Router = ({user}) => (
     <BrowserRouter>
         <NavBar user={user} />
         <Switch>
-            <Route exact path="/" component={Home} render={()=><HomeContainer user={user} />}/>
+            <Route exact path="/" render={()=><Home user={user} />} />
             <Route exact path="/tv" component={TV} />
             <Route exact path="/movies" component={Movies} />
             <Route exact path="/movie/:id([0-9]+)" component={Detail} />

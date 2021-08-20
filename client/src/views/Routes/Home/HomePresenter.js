@@ -63,7 +63,12 @@ const HomeTextUser = styled.span`
 const HomePresenter = (props) => {
     const { popular, videos, error, loading } = props;
     let user = false;
-    {console.log(props, "❌")}
+    try {
+        const { user : { user : {username} }} = props;
+        user = username;
+    } catch {
+        user = false;
+    } 
     return (
     <>
         <Helmet>

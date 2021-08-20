@@ -63,9 +63,7 @@ const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, 
             <Loader /> 
         ) : (
         <>
-           {movieResults && movieResults.length > 0 && (
-            <Section title="영화">
-               {movieResults.map(movie=> (
+           {movieResults && movieResults.length > 0 && (<Section title="영화">{movieResults.map(movie=> (
             <Poster 
                 key={movie.id} 
                 id={movie.id} 

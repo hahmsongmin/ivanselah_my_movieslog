@@ -1,6 +1,7 @@
 import "dotenv/config";
 import "./db";
 import "./models/User";
+import "./models/MyLog";
 import app from "./server";
 
 const PORT = 7777;

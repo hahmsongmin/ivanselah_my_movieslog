@@ -10,7 +10,7 @@ const ErrorMessage = styled.span`
 `;
 
 
-class Join extends React.Component {
+class Join extends Component {
     constructor(props) {
         super(props);
         this.state = {

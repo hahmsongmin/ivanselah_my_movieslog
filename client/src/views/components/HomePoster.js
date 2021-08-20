@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -20,7 +19,7 @@ const Image = styled.div`
 const HomePoster = ({popular}) => (
     <Container>
         {
-         popular.map((movie, index) => index < 2 ? <Image bgUrl={movie.backdrop_path} /> : "")
+         popular.map((movie, index) => index < 2 ? <Image key={movie.id} bgUrl={movie.backdrop_path} /> : "")
         }
     </Container>
 )

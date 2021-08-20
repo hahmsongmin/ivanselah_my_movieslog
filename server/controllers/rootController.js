@@ -1,4 +1,5 @@
 import User from "../models/User";
+import MyLog from "../models/MyLog";
 import bcrypt from "bcrypt";
 
 // React 랜더링 전 User Session 정보 확인
@@ -61,14 +62,28 @@ export const postLogin = async(req, res) => {
 export const postLogSave = async(req, res) => {
     const { logInfo } = req.body;
     const { session : { user : { _id : id}}} = req;
-    try {
-        const updateUser = await User.findByIdAndUpdate(id, {
-            logInfo,
-        }, {new: true} );
-        req.session.user = updateUser;
-        return res.status(200);
-    } catch {
-        return res.status(400);
+    console.log(id);
+    const myLog = await MyLog.findOne({userId : id});
+    console.log(myLog);
+    if(!myLog){
+        try{
+            await MyLog.create({
+                userId : id,
+                contents : logInfo,
+            })
+            return res.status(200).json({ saveOk : "success"});
+        } catch {
+            return res.status(400);
+        }
+    } else {
+        try {
+            await MyLog.findOneAndUpdate({userId : id},
+                { $push : { contents : logInfo},
+            })
+            return res.status(200).json({ updateOk : "success"});
+        } catch(error) {
+            return res.status(400);
+        }
     }
 };
 

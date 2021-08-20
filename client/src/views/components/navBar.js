@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, withRouter, Redirect } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -15,8 +15,8 @@ const NavBar = (props) => {
     try {
         const { user } = props;
         loggedIn = Boolean(user.loggedIn);
-    } catch(error) {
-        console.log(error);
+    } catch {
+        loggedIn = false;
     }
     return (
         <>
