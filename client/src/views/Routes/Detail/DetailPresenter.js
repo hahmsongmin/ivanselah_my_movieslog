@@ -129,6 +129,8 @@ const MyVerticallyCenteredModal = (props) => {
                 event.preventDefault();
                 const logText = event.target.content.value;
                 const logId = props.result?.id;
+                const logTitle = props.result?.title;
+                const logPoster = props.result?.poster_path;
                 try {
                     const response = await axios("http://localhost:7777/logsave", {
                         method : "post",
@@ -136,6 +138,8 @@ const MyVerticallyCenteredModal = (props) => {
                             logInfo : {
                                 logText,
                                 logId,
+                                logTitle,
+                                logPoster,
                             }
                         },
                         withCredentials: true,
@@ -155,7 +159,7 @@ const MyVerticallyCenteredModal = (props) => {
   );
 }
 
-const DetailPresenter = ({ result , videos, error, loading }) => {
+const DetailPresenter = ({ result , videos, error, isMovie, loading }) => {
     const [modalShow, setModalShow] = React.useState(false);
     return (
     loading ? 
@@ -179,14 +183,17 @@ const DetailPresenter = ({ result , videos, error, loading }) => {
                 <Cover bgImage={`https://image.tmdb.org/t/p/original/${result?.poster_path}`}/>
                 <Content>
                         <Title>{result?.original_title ? result?.original_title : result?.original_name}</Title>
-                        <Log>
-                            <div onClick={() => setModalShow(true)}><LogIcon />로그하기</div>
-                            <MyVerticallyCenteredModal
-                                show={modalShow}
-                                onHide={() => setModalShow(false)}
-                                result={result}
-                            />
-                        </Log>
+                        {isMovie ? 
+                            <Log>
+                                <div onClick={() => setModalShow(true)}><LogIcon />로그하기</div>
+                                <MyVerticallyCenteredModal
+                                    show={modalShow}
+                                    onHide={() => setModalShow(false)}
+                                    result={result}
+                                />
+                            </Log>
+                        : null
+                        }
                     <Data>
                         <InfoContainer>
                             <Year>{result?.release_date ? result?.release_date ? result?.release_date.split("-")[0] : "" : result?.first_air_date ? result?.first_air_date.substring(0, 4) : ""}</Year>
@@ -200,7 +207,7 @@ const DetailPresenter = ({ result , videos, error, loading }) => {
                             </Item>
                             <Divider>·</Divider>
                             <Item>
-                                {result?.production_countries.length > 0 ? result?.production_countries[0].name : result?.production_companies[0].origin_country}
+                                {result?.production_countries.length > 0 && result?.production_countries[0].name ? result?.production_companies[0].origin_country : "👀"}
                             </Item>
                             <Company>
                                 {result?.production_companies.length > 0 ? `⭐${result?.production_companies[0].name}` : null }

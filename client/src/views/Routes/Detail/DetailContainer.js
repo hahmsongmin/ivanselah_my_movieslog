@@ -39,13 +39,14 @@ class DetailContainer extends React.Component {
     }
 
     render() {
-        const { result, videos, error, loading} = this.state;
+        const { result, videos, error, isMovie, loading} = this.state;
         console.log(this.state);
         return (
             <>
             <DetailPresenter
                 result = {result}
                 videos = {videos}
+                isMovie = {isMovie}
                 error = {error}
                 loading = {loading}
             />

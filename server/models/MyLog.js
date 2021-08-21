@@ -5,9 +5,11 @@ let nowTime = new Date().getTime() + (3600000*9);
 const MyLogSchema = new mongoose.Schema({
     userId : {type: String, required: true},
     contents : [{
-        createdAt : {type : Date, required: true, default: new Date(nowTime)},
+        createdAt : {type : Date, required: true, default: String(new Date(nowTime)) },
         logText : String, 
-        logId : Number
+        logId : Number,
+        logTitle : String,
+        logPoster : String,
     }],
 });
 

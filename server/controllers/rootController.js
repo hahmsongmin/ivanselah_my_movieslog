@@ -16,8 +16,18 @@ export const getLogout = (req, res) => {
 export const postMyLogInfo = async(req, res) => {
     const { user : { _id : id } } = req.session;
     const { user } = req.session;
-    const myLog = await MyLog.findOne({userId : id});
-    return res.json({myLog, user}); 
+    try{
+        const myLog = await MyLog.findOne({userId : id});
+        if(myLog){
+            console.log("❤check");
+            return res.json({myLog, user}); 
+        }
+        else {
+            return res.json({ error : "Please login first."})
+        }
+    } catch {
+        return res.json({ error : "Error❌" })
+    }
 };
 
 
