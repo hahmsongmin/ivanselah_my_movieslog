@@ -1,5 +1,5 @@
 import express from "express";
-import { home, postMyLogInfo,
+import { home, postMyLogInfo, postMyLogDelete,
     postJoin,postLogin,getLogout,postLogSave,
 } from "../controllers/rootController";
 
@@ -11,5 +11,6 @@ rootRouter.post("/login", postLogin);
 rootRouter.get("/logout", getLogout);
 rootRouter.post("/logsave", postLogSave);
 rootRouter.post("/myLogInfo", postMyLogInfo);
+rootRouter.post("/myLogDelete", postMyLogDelete);
 
 export default rootRouter;

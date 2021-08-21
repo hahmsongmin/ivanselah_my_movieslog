@@ -102,5 +102,16 @@ export const postLogSave = async(req, res) => {
     }
 };
 
+// Log 삭제
+export const postMyLogDelete = async(req, res) => {
+    const {objectId} = req.body;
+    const temp = await MyLog.findOneAndUpdate({}, {
+        $pull : { contents : { 
+            _id : objectId 
+        }}
+    }
+    );
+    console.log(temp);
+    return res.send("success");
+};
 
-///  그리고 내공간 UI

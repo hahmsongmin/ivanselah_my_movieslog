@@ -97,13 +97,19 @@ const Company = styled.div`
 `;
 
 const Log = styled.div`
-    font-size: 20px;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 25px;
     cursor: pointer;
     color: #f39c12;
 `;
 
 const LogIcon = styled(BsPencilSquare)`
     font-size: 3rem;
+`;
+
+const LogText = styled.span`
+    margin-top: 20px;
 `;
 
 /* Modal 은 scss로 */
@@ -128,6 +134,10 @@ const MyVerticallyCenteredModal = (props) => {
             <form method="POST" onSubmit={async(event)=>{
                 event.preventDefault();
                 const logText = event.target.content.value;
+                if(logText.length > 200){
+                    alert("입력하신 글자 수가 많습니다.(최대:200자)")
+                    return;
+                }
                 const logId = props.result?.id;
                 const logTitle = props.result?.title;
                 const logPoster = props.result?.poster_path;
@@ -149,7 +159,7 @@ const MyVerticallyCenteredModal = (props) => {
                     console.log("logSave ❌", error.message);
                 }
             }} >
-              <textarea className="messageSender__input" placeholder="여기에 기록하세요." type="text" name="content" />
+              <textarea className="messageSender__input" placeholder="여기에 기록하세요." type="text" name="content" cols="320" />
               <button className="messageSenderBtn" onClick={props.onHide}>저장</button>
             </form>
           </div>
@@ -185,7 +195,7 @@ const DetailPresenter = ({ result , videos, error, isMovie, loading }) => {
                         <Title>{result?.original_title ? result?.original_title : result?.original_name}</Title>
                         {isMovie ? 
                             <Log>
-                                <div onClick={() => setModalShow(true)}><LogIcon />로그하기</div>
+                                <div onClick={() => setModalShow(true)}><LogIcon /> <LogText>로그하기</LogText></div>
                                 <MyVerticallyCenteredModal
                                     show={modalShow}
                                     onHide={() => setModalShow(false)}

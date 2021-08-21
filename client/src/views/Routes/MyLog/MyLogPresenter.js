@@ -41,6 +41,7 @@ const MyLogPresenter = ({ Results, username, error, loading }) => {
         <MyLogPoster 
             key = {movie.logId}
             id = {movie.logId}
+            objectId = {movie._id}
             title={movie.logTitle} 
             imageUrl={movie.logPoster}
             logText = {movie.logText}
