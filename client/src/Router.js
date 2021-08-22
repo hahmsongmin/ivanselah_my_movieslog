@@ -12,6 +12,7 @@ import TV from "./views/Routes/TV";
 import Movies from "./views/Routes/Movies";
 import Detail from "./views/Routes/Detail";
 import MyLog from "./views/Routes/MyLog";
+import Edit from "./views/users/Edit";
 
 const Router = ({user}) => (
     <BrowserRouter>
@@ -25,6 +26,8 @@ const Router = ({user}) => (
             <Route exact path="/search" component={Search} />
             <Route exact path="/join" component={Join} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/user/edit" render={()=><Edit user={user} />} />
+            {/* <Route exact path="/user/delete" component={} /> */}
             <Route exact path="/mylog" render={()=><MyLog user={user} />} />
             <Redirect from="*" to="/" />
         </Switch>

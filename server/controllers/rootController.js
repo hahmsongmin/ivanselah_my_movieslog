@@ -51,7 +51,7 @@ export const postJoin = async (req, res) => {
             password,
         });
         console.log("✅ Join Completion");
-        return res.status(200).json({ joinOK : "success"});
+        return res.status(200).json({ info : "Welcome, Joined!", joinOK : "success"});
     }catch(error){
         console.log("❌ something error");
         return res.status(400).json({ error : error.message });
@@ -72,6 +72,57 @@ export const postLogin = async(req, res) => {
     req.session.loggedIn = true;
     req.session.user = user;
     return res.status(200).json({ loggedIn : true, loginData : req.session.user });
+};
+
+export const postUserEdit = async(req, res) => {
+    const { username, password, password1, password2 } = req.body;
+    const { user : { _id }} = req.session;
+    const user = await User.findById({_id});
+    const oldPasswordCheck = await bcrypt.compare(password, user.password);
+    // 기존 비밀번호 확인
+    if(!oldPasswordCheck){
+        return res.json({ error : "Wrong Password!"});
+    }
+    // username만 변경
+    if(username !== user.username){
+        const exists = await User.exists({username});
+        if(exists){
+            return res.json({ error : "This Username is already using."});
+        } else {
+            const updateUser = await User.findByIdAndUpdate(_id, {
+                username,
+            }, {new: true});
+            req.session.user = updateUser;
+            return res.status(200).json({ info : "Username Updated!"});
+        }
+    }
+    // password만 변경
+    if(password !== password1){
+        if(password1 !== password2){
+            return res.json({ error : "Change of Password confirmation does not match." });
+        }
+        user.password = password1;
+        await user.save();
+        req.session.user.password = user.password;
+        return res.status(200).json({ info : "Password Updated!"});
+    }
+    // 둘다 변경
+    if(username !== user.username && password !== password1){
+        const exists = await User.exists({username});
+        if(exists){
+            return res.json({ error : "This Username is already using."});
+        } else if (password1 !== password2) {
+            return res.json({ error : "Change of Password confirmation does not match." });
+        } else {
+            const updateUser = await User.findByIdAndUpdate(_id, {
+                username,
+                password : password1,
+            }, {new: true});
+            req.session.user = updateUser;
+            return res.status(200).json({ info : "All Updated!"});
+        }
+    }
+    return res.end();
 };
 
 
@@ -105,13 +156,12 @@ export const postLogSave = async(req, res) => {
 // Log 삭제
 export const postMyLogDelete = async(req, res) => {
     const {objectId} = req.body;
-    const temp = await MyLog.findOneAndUpdate({}, {
+    await MyLog.findOneAndUpdate({}, {
         $pull : { contents : { 
             _id : objectId 
         }}
     }
     );
-    console.log(temp);
     return res.send("success");
 };
 

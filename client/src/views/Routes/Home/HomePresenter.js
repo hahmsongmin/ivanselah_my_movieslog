@@ -7,6 +7,7 @@ import Message from "../../components/Message";
 import HomePoster from "../../components/HomePoster";
 import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
+import { FiMessageSquare } from "react-icons/fi";
 
 const Container = styled.div`
     position: relative;
@@ -61,7 +62,8 @@ const HomeTextUser = styled.span`
 
 
 const HomePresenter = (props) => {
-    const { popular, videos, error, loading } = props;
+    const { popular, videos, error, loading, info } = props;
+    console.log(info, "👍");
     let user = false;
     try {
         const { user : { user : {username} }} = props;
@@ -83,6 +85,7 @@ const HomePresenter = (props) => {
                 <HomeText>
                 { user ? ( 
                     <>
+                    <div className="userUpdateMessages"><span>{info}</span></div>
                     <h1><HomeTextUser>{user}</HomeTextUser>님, 방문해 주셔서 감사합니다.</h1>
                     <p>영화, TV프로그램 정보를 검색, 기록</p>
                     <Link to="/movies"><HomeTextButton>즐거운 하루되세요</HomeTextButton></Link>

@@ -1,0 +1,31 @@
+@keyframes goAway {
+    from {
+        transform: none;
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+}
+
+.userUpdateMessages{
+    background-color: red;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    width: 300px;
+    height: 50px;
+    padding: 10px 10px;
+    text-align: center;
+    border-radius: 20px;
+    animation: goAway 0.5s ease-in-out forwards;
+    animation-delay: 1s;
+    span {
+        color: white;
+    }
+}

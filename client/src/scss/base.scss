@@ -12,10 +12,12 @@
 @import "./components/loader.scss";
 @import "./components/detail.scss";
 @import "./components/modal.scss";
+@import "./components/userUpdateMessages.scss";
 
 // Screens 
 @import "./Screens/myLog.scss";
 @import "./Screens/myLogPoster.scss";
+@import "./Screens/myLogMemu.scss";
 
 body {
     font-family: 'Roboto', sans-serif;

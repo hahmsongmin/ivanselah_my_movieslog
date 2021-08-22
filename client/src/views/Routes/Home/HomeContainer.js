@@ -10,6 +10,7 @@ class HomeContainer extends Component{
             popular: null,
             videos: null,
             error: null,
+            info: null,
             loading: true,
         }
     }
@@ -53,6 +54,7 @@ class HomeContainer extends Component{
             popular = {popular} 
             videos = {videos}
             user = {this.props.user}
+            info = {this.props.info}
             error = {error}
             loading = {loading}
             />

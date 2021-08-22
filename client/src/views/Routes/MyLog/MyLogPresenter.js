@@ -5,6 +5,7 @@ import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import Helmet from "react-helmet";
 import MyLogPoster from "../../components/MyLogPoster";
+import MyLogMemu from "../../components/MyLogMemu";
 import LogSection from "../../components/LogSection";
 
 const Container = styled.div`
@@ -23,7 +24,6 @@ const UserName = styled.div`
 `;
 
 const MyLogPresenter = ({ Results, username, error, loading }) => {
-    console.log(Results);
     return (
     <>
         <Helmet>
@@ -36,6 +36,7 @@ const MyLogPresenter = ({ Results, username, error, loading }) => {
         ( <>
         <UserName>✔ {username} 공간</UserName>
         <Container>
+            <MyLogMemu />
         {Results && Results.length > 0 && <LogSection> {Results.
         map(movie => 
         <MyLogPoster 

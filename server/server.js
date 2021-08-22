@@ -14,6 +14,7 @@ app.use(cors({
 }));
 
 app.use(morgan("dev"));
+
 app.use(
     session({
         secret: process.env.COOKIE_SECRET,
