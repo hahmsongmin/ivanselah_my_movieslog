@@ -22,7 +22,7 @@ class Edit extends Component {
         }
 
     }
-
+ 
         submitEdit = async(event) => {
         event.preventDefault();
         const username = event.target.username.value;
@@ -77,7 +77,7 @@ class Edit extends Component {
                         {editError ? <ErrorMessage>{editError}</ErrorMessage> : <span>LOGFLIX EDIT</span>}
                     </div>
                     <form method="POST" onSubmit={this.submitEdit} className="users-join-form">
-                        <input placeholder="Username" name="username" type="text" required autoComplete="off" value={`${Username}`} />
+                        <input placeholder={`${Username}`} name="username" type="text" required autoComplete="off" />
                         <input placeholder="Current Password" name="password" type="password" required autoComplete="off"/>
                         <input placeholder="Change of Password" name="password1" type="password"  autoComplete="off"/>
                         <input placeholder="Confirm Password" name="password2" type="password"  autoComplete="off"/>

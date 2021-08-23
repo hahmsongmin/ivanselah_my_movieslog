@@ -18,7 +18,7 @@ search for movie, register it and write my own log.
 - [x] search +
 - [x] movies +
 - [x] movieDetail +
-- [ ] logSpace +
+- [x] logSpace +
 
 
 ## API Name, get info

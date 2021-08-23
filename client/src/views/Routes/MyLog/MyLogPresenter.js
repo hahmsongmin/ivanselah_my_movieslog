@@ -30,11 +30,10 @@ const MyLogPresenter = ({ Results, username, error, loading }) => {
             <title>MyLog | Logflix</title>
         </Helmet>
         {loading ?
-        ( <Loader /> ) : 
-        error ? <Message color="#e74c3c" text = {error} /> 
-        : 
+        ( <Loader /> ) :
         ( <>
-        <UserName>✔ {username} 공간</UserName>
+        {error ? <Message color="#e74c3c" text = {error} /> 
+        : <UserName>✔ {username} 공간</UserName>}
         <Container>
             <MyLogMemu />
         {Results && Results.length > 0 && <LogSection> {Results.

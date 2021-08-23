@@ -25,7 +25,7 @@ const NavBar = (props) => {
             <header className="nav-container">
                 <div className="nav__header">
                     <div className="nav__navigation-left">
-                        <SLink to="/" selected={(pathname === "/")}><div className="nav__logo">LOGFLIX</div></SLink>
+                        <a href="/" selected={(pathname === "/")}><div className="nav__logo">LOGFLIX</div></a>
                         <SLink to="/movies" selected={(pathname === "/movies")}>영화</SLink>
                         <SLink to="/tv" selected={(pathname === "/tv")}>TV프로그램</SLink>
                         <SLink to="/search" selected={(pathname === "/search")}>검색</SLink>

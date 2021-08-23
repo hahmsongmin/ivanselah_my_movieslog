@@ -30,6 +30,82 @@ export const postMyLogInfo = async(req, res) => {
     }
 };
 
+// Git 로그인 
+export const startGithubLogin = (req, res) => {
+    const baseUrl = "https://github.com/login/oauth/authorize";
+    const config = {
+        client_id: process.env.GITHUB_CLIENT,
+        allow_signup: false,
+        scope: "read:user user:email"
+    };
+    const params = new URLSearchParams(config).toString();
+    const finalUrl = `${baseUrl}?${params}`;
+    return res.status(200);
+};
+
+export const finishGithubLogin = async(req, res) => {
+    const baseUrl = "https://github.com/login/oauth/access_token";
+    const config = {
+        client_id: process.env.GITHUB_CLIENT,
+        client_secret: process.env.GITHUB_SECRET,
+        code: req.query.code,
+    };
+    const params = new URLSearchParams(config).toString();
+    const finalUrl = `${baseUrl}?${params}`;
+    // (내가만든 finalUrl에 POST요청을 보내고 있음)
+    // fetch를 통해 데이터를 받아오고
+    const tokenRequest = await ( 
+        await fetch(finalUrl, {
+        method:"POST",
+        // json으로 return 받기위해 추가, 안하면 text형태임
+        headers: {
+            Accept: "application/json",
+        },
+    })
+    ).json();
+    // 받아온 데이터에서 json을 추출
+    // access_token을 가지고 api접근해서 user정보를 얻는다.
+    // return res.send(JSON.stringify(json));
+    if ("access_token" in tokenRequest){
+        const { access_token } = tokenRequest;
+        const apiUrl = "https://api.github.com";
+        const userData = await (
+            await fetch(`${apiUrl}/user`, {
+            headers: {
+                Authorization: `token ${access_token}`,
+                },
+            })
+        ).json();
+        const emailData = await(await fetch(`${apiUrl}/user/emails`, {
+            headers: {
+                Authorization: `token ${access_token}`,
+                },
+            })
+        ).json();
+        const emailObj = emailData.find((email) => email.primary === true && email.verified === true);
+        if (!emailObj){
+            return res.json({ error : "/login"});
+        } 
+        let user = await User.findOne({email: emailObj.email});
+        if(!user){
+            user = await User.create({
+                avatarUrl: userData.avatar_url,
+                name: userData.name,
+                username: userData.login,
+                email: emailObj.email,
+                password: "",
+                socialOnly: true,
+                location: userData.location,
+            });
+        }
+        req.session.loggedIn = true;
+        req.session.user = user;
+        return res.status(200);
+    } else {
+        return res.json({ error : "/login"});
+    }
+};
+
 
 // User 정보 
 
@@ -84,7 +160,7 @@ export const postUserEdit = async(req, res) => {
         return res.json({ error : "Wrong Password!"});
     }
     // username만 변경
-    if(username !== user.username){
+    if(username !== user.username && password === password1){
         const exists = await User.exists({username});
         if(exists){
             return res.json({ error : "This Username is already using."});
@@ -97,7 +173,7 @@ export const postUserEdit = async(req, res) => {
         }
     }
     // password만 변경
-    if(password !== password1){
+    if(password !== password1 && username === user.username ){
         if(password1 !== password2){
             return res.json({ error : "Change of Password confirmation does not match." });
         }
@@ -106,6 +182,7 @@ export const postUserEdit = async(req, res) => {
         req.session.user.password = user.password;
         return res.status(200).json({ info : "Password Updated!"});
     }
+
     // 둘다 변경
     if(username !== user.username && password !== password1){
         const exists = await User.exists({username});
@@ -114,10 +191,12 @@ export const postUserEdit = async(req, res) => {
         } else if (password1 !== password2) {
             return res.json({ error : "Change of Password confirmation does not match." });
         } else {
-            const updateUser = await User.findByIdAndUpdate(_id, {
+            const updateUser = await User.findByIdAndUpdate(_id, 
+            {
                 username,
-                password : password1,
             }, {new: true});
+            user.password = password1;
+            await user.save();
             req.session.user = updateUser;
             return res.status(200).json({ info : "All Updated!"});
         }
@@ -165,3 +244,12 @@ export const postMyLogDelete = async(req, res) => {
     return res.send("success");
 };
 
+
+// User 탈퇴
+export const getUserDelete = async(req, res) => {
+    const { session : { user : { _id }}} = req;
+    req.session.destroy();
+    await MyLog.findOneAndDelete({userId : _id})
+    await User.findByIdAndDelete(_id);
+    return res.status(200);
+};

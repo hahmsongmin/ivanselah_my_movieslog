@@ -8,6 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       user : null,
+      isLogin : false,
     }
   }
 
@@ -16,14 +17,19 @@ class App extends Component {
     method : "get",
     withCredentials: true
     })
-    this.setState({ user : user.data });
+    if(user.data.loggedIn){
+      this.setState({ 
+        user : user.data,
+        isLogin : true,
+       });
+    }
   }  
 
   render(){
-    const { user } = this.state;
+    const { user, isLogin } = this.state;
     return (
       <>
-        <BrowserRouter  user = {user} />
+        <BrowserRouter  user = {user} isLogin = {isLogin} />
       </>
     )
   }

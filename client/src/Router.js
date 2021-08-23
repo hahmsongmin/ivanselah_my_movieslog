@@ -14,21 +14,21 @@ import Detail from "./views/Routes/Detail";
 import MyLog from "./views/Routes/MyLog";
 import Edit from "./views/users/Edit";
 
-const Router = ({user}) => (
+const Router = ({user, isLogin}) => (
     <BrowserRouter>
         <NavBar user={user} />
         <Switch>
             <Route exact path="/" render={()=><Home user={user} />} />
-            <Route exact path="/tv" component={TV} />
-            <Route exact path="/movies" component={Movies} />
-            <Route exact path="/movie/:id([0-9]+)" component={Detail} />
-            <Route exact path="/tv/:id([0-9]+)" component={Detail} />
-            <Route exact path="/search" component={Search} />
-            <Route exact path="/join" component={Join} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/user/edit" render={()=><Edit user={user} />} />
-            {/* <Route exact path="/user/delete" component={} /> */}
-            <Route exact path="/mylog" render={()=><MyLog user={user} />} />
+            {/* <Route exact path="/tv" component={TV} /> */}
+            <Route exact path="/tv" render={() => isLogin ? <TV /> : <Redirect to="/login"/>} />
+            <Route exact path="/movies" render={() => isLogin ? <Movies /> : <Redirect to="/login"/>} />
+            <Route exact path="/movie/:id([0-9]+)" render={() => isLogin ? <Detail /> : <Redirect to="/login"/>}/>
+            <Route exact path="/tv/:id([0-9]+)" render={() => isLogin ? <Detail /> : <Redirect to="/login"/>}/>
+            <Route exact path="/search" render={() => isLogin ? <Search /> : <Redirect to="/login" /> }/>
+            <Route exact path="/join"  render={() => isLogin ? <Redirect to="/" /> : <Join />} />
+            <Route exact path="/login" render={() => isLogin ? <Redirect to="/" /> : <Login />} />
+            <Route exact path="/user/edit" render={()=> isLogin ? <Edit user={user} /> : <Redirect to="/login" />} />
+            <Route exact path="/mylog" render={()=> isLogin ? <MyLog user={user} /> : <Redirect to="/login" />} />
             <Redirect from="*" to="/" />
         </Switch>
     </BrowserRouter>
