@@ -8,6 +8,7 @@ import { BsPencilSquare } from "react-icons/bs";
 import { Modal } from "react-bootstrap";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import { PORT } from "../../../App";
 
 const Container = styled.div`
   display: flex;
@@ -149,7 +150,7 @@ const MyVerticallyCenteredModal = (props) => {
                 const logPoster = props.result?.poster_path;
                 try {
                   const response = await axios(
-                    "http://localhost:7777/logsave",
+                    `http://localhost:${PORT}/logsave`,
                     {
                       method: "post",
                       data: {

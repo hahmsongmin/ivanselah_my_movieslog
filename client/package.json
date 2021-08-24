@@ -15,7 +15,9 @@
     "start": "set PORT=7776 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -23,6 +25,7 @@
       "react-app/jest"
     ]
   },
+  "homepage": "https://hahmsongmin.github.io/ivanselah_my_movieslog",
   "browserslist": {
     "production": [
       ">0.2%",

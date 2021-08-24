@@ -8,8 +8,9 @@
   },
   "scripts": {
     "start": "node build/init.js",
-    "build:client" : "cd client && npm build",
-    "build:server" : "babel server -d build",
+    "build:client": "cd client && npm run build",
+    "build:server": "babel server -d build",
+    "build": "npm run build:server && npm run build:client",
     "server": "nodemon --exec babel-node server/init.js",
     "client": "cd client && npm start",
     "all": "concurrently \"npm run server\" \"npm run client --prefix\""

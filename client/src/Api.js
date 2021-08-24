@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://api.themoviedb.org/3/",
-    params: {
-        api_key : "5b42baf14b999aeb69e9bef0f88d55da" ,
-        language : "ko-KR"
-    }
+  baseURL: "https://api.themoviedb.org/3/",
+  params: {
+    api_key: "5b42baf14b999aeb69e9bef0f88d55da",
+    language: "ko-KR",
+  },
 });
 
 // 상대경로 baseURL/  +   tv/popular + params
@@ -18,14 +18,15 @@ export const moviesApi = {
   movieDetail: (id) =>
     api.get(`movie/${id}`, {
       params: {
-        append_to_response: "videos"
-      }
+        append_to_response: "videos",
+      },
     }),
-  search: (searchTerm) => api.get("search/movie", { 
-    params: { 
-      query: searchTerm
-      } 
-    })
+  search: (searchTerm) =>
+    api.get("search/movie", {
+      params: {
+        query: searchTerm,
+      },
+    }),
 };
 
 export const tvApi = {
@@ -35,13 +36,13 @@ export const tvApi = {
   tvDetail: (id) =>
     api.get(`tv/${id}`, {
       params: {
-        append_to_response: "videos"
-      }
+        append_to_response: "videos",
+      },
     }),
-  search: (searchTerm) => api.get("search/tv", { 
-    params: { 
-      query: searchTerm
-    } 
-  })
+  search: (searchTerm) =>
+    api.get("search/tv", {
+      params: {
+        query: searchTerm,
+      },
+    }),
 };
-

@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import {
+  HashRouter,
+  BrowserRouter,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 // components
 import NavBar from "./views/components/NavBar";
 // users
@@ -15,7 +21,7 @@ import MyLog from "./views/Routes/MyLog";
 import Edit from "./views/users/Edit";
 
 const Router = ({ user, isLogin }) => (
-  <BrowserRouter>
+  <HashRouter>
     <NavBar user={user} />
     <Switch>
       <Route exact path="/" render={() => <Home user={user} />} />
@@ -67,7 +73,7 @@ const Router = ({ user, isLogin }) => (
       />
       <Redirect from="*" to="/" />
     </Switch>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default Router;
