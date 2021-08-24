@@ -1,8 +1,9 @@
-# Movies Log🚀
+# Movies Log🚀 ⭐배포 작업중⭐ 가상 리눅스 셋팅완료(테스트)
 
 search for movie, register it and write my own log.
 
 ## Skills(Base Node.JS)
+
 - Font-End
   - [x] HTML, CSS(+SCSS), ES6, React
 - Back-End
@@ -12,14 +13,13 @@ search for movie, register it and write my own log.
 
 ## Screens Path && + Functions
 
-- [x] home + 
+- [x] home +
 - [x] join(+github) +
 - [x] login, logout +
 - [x] search +
 - [x] movies +
 - [x] movieDetail +
 - [x] logSpace +
-
 
 ## API Name, get info
 
