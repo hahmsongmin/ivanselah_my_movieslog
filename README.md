@@ -1,4 +1,5 @@
-# Movies Log🚀 ⭐배포 작업중⭐ 가상 리눅스 셋팅완료(테스트)
+# Movies Log🚀 
+⭐배포 작업중⭐ 가상 리눅스 셋팅완료(테스트)
 
 search for movie, register it and write my own log.
 
