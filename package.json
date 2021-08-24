@@ -7,6 +7,9 @@
     "url": "git+https://github.com/hahmsongmin/ivanselah_my_movieslog.git"
   },
   "scripts": {
+    "start": "node build/init.js",
+    "build:client" : "cd client && npm build",
+    "build:server" : "babel server -d build",
     "server": "nodemon --exec babel-node server/init.js",
     "client": "cd client && npm start",
     "all": "concurrently \"npm run server\" \"npm run client --prefix\""
@@ -44,10 +47,11 @@
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.14.5",
-    "@babel/core": "^7.14.6",
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
     "@babel/node": "^7.14.7",
     "@babel/preset-env": "^7.14.7",
+    "@babel/preset-react": "^7.14.5",
     "css-loader": "^6.2.0",
     "mini-css-extract-plugin": "^2.1.0",
     "nodemon": "^2.0.12",
