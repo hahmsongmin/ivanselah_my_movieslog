@@ -12,8 +12,9 @@
     "build:server": "babel server -d build",
     "build": "npm run build:server && npm run build:client",
     "server": "nodemon --exec babel-node server/init.js",
-    "client": "cd client && npm start",
-    "all": "concurrently \"npm run server\" \"npm run client --prefix\""
+    "client": "npm run start --prefix client",
+    "all": "concurrently \"npm run server\" \"npm run client --prefix\"",
+    "heroku-postbuild": "NPM_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "IvanSelah",
   "license": "MIT",
@@ -57,6 +58,7 @@
     "nodemon": "^2.0.12",
     "sass": "^1.37.2",
     "sass-loader": "^12.1.0",
-    "style-loader": "^3.2.1"
+    "style-loader": "^3.2.1",
+    "terser": "^3.14.1"
   }
 }
