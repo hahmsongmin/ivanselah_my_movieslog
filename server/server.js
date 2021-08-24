@@ -6,22 +6,23 @@ import rootRouter from "./routers/rootRouter";
 import MongoStore from "connect-mongo";
 import { localsMiddleware } from "./middlewares";
 
-
 const app = express();
-app.use(cors({
+app.use(
+  cors({
     origin: true,
     credentials: true,
-}));
+  })
+);
 
 app.use(morgan("dev"));
 
 app.use(
-    session({
-        secret: process.env.COOKIE_SECRET,
-        resave: false,
-        saveUninitialized: false,
-        store: MongoStore.create({mongoUrl: process.env.DB_URL}),
-    })
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
+  })
 );
 
 // app.use((req,res,next)=>{
@@ -29,7 +30,7 @@ app.use(
 //     next();
 // })
 
-// // 브라우저(새로고침시) --> 쿠키 전달 확인 
+// // 브라우저(새로고침시) --> 쿠키 전달 확인
 // app.use((req,res,next)=>{
 //     req.sessionStore.all((error, sessions) => {
 //         console.log(sessions);
@@ -37,9 +38,10 @@ app.use(
 //     })
 // })
 
+app.use(express.static("build/init.js"));
 
 app.use(express.json());
-app.use(express.urlencoded( {extended : true } ))
+app.use(express.urlencoded({ extended: true }));
 
 app.use(localsMiddleware);
 
