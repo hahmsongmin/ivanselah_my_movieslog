@@ -15,7 +15,6 @@
     "client": "cd client && npm start",
     "all": "concurrently \"npm run server\" \"npm run client --prefix\""
   },
-  "proxy": "http://localhost:7777",
   "author": "IvanSelah",
   "license": "MIT",
   "bugs": {
