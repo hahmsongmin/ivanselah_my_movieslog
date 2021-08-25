@@ -285,6 +285,7 @@ const DetailPresenter = ({
             <Overview>{result?.overview ? result?.overview : ""}</Overview>
           </Data>
           <iframe
+            title="contents"
             className="youtube"
             src={
               videos?.length > 0
