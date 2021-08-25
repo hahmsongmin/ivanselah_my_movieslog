@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { moviesApi, tvApi } from "../../../Api";
 import DetailPresenter from "./DetailPresenter";
 

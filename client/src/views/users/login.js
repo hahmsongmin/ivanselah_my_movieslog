@@ -51,7 +51,7 @@ class Login extends Component {
   };
 
   render() {
-    const { LoginSeccess, isLoginOK, LoginError } = this.state;
+    const { isLoginOK, LoginError } = this.state;
     return (
       <>
         <Helmet>

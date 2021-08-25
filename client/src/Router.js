@@ -1,16 +1,10 @@
 import React from "react";
-import {
-  HashRouter,
-  BrowserRouter,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 // components
-import NavBar from "./views/components/NavBar";
+import NavBar from "./views/components/navBar";
 // users
-import Join from "./views/users/Join";
-import Login from "./views/users/Login";
+import Join from "./views/users/join";
+import Login from "./views/users/login";
 // Routes
 import Search from "./views/Routes/Search";
 import Home from "./views/Routes/Home";
@@ -21,7 +15,7 @@ import MyLog from "./views/Routes/MyLog";
 import Edit from "./views/users/Edit";
 
 const Router = ({ user, isLogin }) => (
-  <HashRouter>
+  <BrowserRouter>
     <NavBar user={user} />
     <Switch>
       <Route exact path="/" render={() => <Home user={user} />} />
@@ -73,7 +67,7 @@ const Router = ({ user, isLogin }) => (
       />
       <Redirect from="*" to="/" />
     </Switch>
-  </HashRouter>
+  </BrowserRouter>
 );
 
 export default Router;
