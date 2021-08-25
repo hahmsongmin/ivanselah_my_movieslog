@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect, Link, Route } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { TiArrowBack } from "react-icons/ti";
 import Home from "../Routes/Home/index";
 import styled from "styled-components";

@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  HashRouter,
-  BrowserRouter,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 // components
 import NavBar from "./views/components/navBar";
 // users

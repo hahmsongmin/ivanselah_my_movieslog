@@ -54,7 +54,7 @@ class Join extends Component {
   };
 
   render() {
-    const { joinSeccess, isJoinOK, joinError } = this.state;
+    const { isJoinOK, joinError } = this.state;
     return (
       <>
         <Helmet>

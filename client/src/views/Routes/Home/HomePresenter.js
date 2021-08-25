@@ -7,7 +7,6 @@ import Message from "../../components/Message";
 import HomePoster from "../../components/HomePoster";
 import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
-import { FiMessageSquare } from "react-icons/fi";
 
 const Container = styled.div`
   position: relative;
