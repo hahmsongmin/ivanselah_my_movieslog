@@ -7,7 +7,7 @@
     "url": "git+https://github.com/hahmsongmin/ivanselah_my_movieslog.git"
   },
   "scripts": {
-    "start": "node server/init.js",
+    "start": "node build/init.js",
     "build:client": "cd client && npm run build",
     "build:server": "babel server -d build",
     "build": "npm run build:server && npm run build:client",
