@@ -7,7 +7,7 @@
     "url": "git+https://github.com/hahmsongmin/ivanselah_my_movieslog.git"
   },
   "scripts": {
-    "start": "node server/init.js",
+    "start": "node build/init.js",
     "build:client": "cd client && npm run build",
     "build:server": "babel server -d build",
     "build": "npm run build:server && npm run build:client",
@@ -49,6 +49,7 @@
     "react-icons": "^4.2.0",
     "react-refresh": "^0.10.0",
     "react-router-dom": "^5.2.0",
+    "regenerator-runtime": "^0.13.9",
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
