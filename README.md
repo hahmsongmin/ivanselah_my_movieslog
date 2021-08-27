@@ -1,5 +1,4 @@
-# Movies Log🚀 
-⭐배포 작업중⭐ 가상 리눅스커널(Ubuntu)-VScode 연결 셋팅완료(테스트)
+# Movies Log🚀
 
 search for movie, register it and write my own log.
 
@@ -8,9 +7,7 @@ search for movie, register it and write my own log.
 - Font-End
   - [x] HTML, CSS(+SCSS), ES6, React
 - Back-End
-  - [x] Express, MongoDB, Mongoose, WebPack
-- Deployment
-  - [ ] AWS(Ubuntu), Heroku
+  - [x] Express, MongoDB, Mongoose
 
 ## Screens Path && + Functions
 
