@@ -273,7 +273,7 @@ const DetailPresenter = ({
               <Item>
                 {result?.production_countries.length > 0 &&
                 result?.production_countries[0].name
-                  ? result?.production_companies[0].origin_country
+                  ? result?.production_companies[0]?.origin_country
                   : "👀"}
               </Item>
               <Company>
