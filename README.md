@@ -1,10 +1,12 @@
 # Movies Log🚀
+#### ❗ Express 서버와 연결되어 있으며 로그인해야 영화, TV프로그램, 검색 탭 볼 수 있습니다.
+✅ 실행 동영상 참고
 
 search for movie, register it and write my own log.
 
 ![3-removebg-preview](https://user-images.githubusercontent.com/78192018/134357751-e17eb01b-5f3a-4fa2-9cb6-3acfc8706d09.png)
 
-✅ 실행 동영상 참고
+
 ## Skills(Base Node.JS)
 
 - Font-End
