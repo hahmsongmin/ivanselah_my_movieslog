@@ -4,6 +4,7 @@ search for movie, register it and write my own log.
 
 ![3-removebg-preview](https://user-images.githubusercontent.com/78192018/134357751-e17eb01b-5f3a-4fa2-9cb6-3acfc8706d09.png)
 
+::실행 동영상 참고
 ## Skills(Base Node.JS)
 
 - Font-End
